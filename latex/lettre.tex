@@ -1,0 +1,64 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                      LaTeX french letter template                           %
+%         © 2010-2014 Valentin Roussellet (louen_AD_palouf.org)               %
+%    Distributed under the terms of WTFPL v2, see http://sam.zoy.org/wtfpl    %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% The package 'lettre' is required. 
+% On Debian, apt-get install texlive-latex-extra.
+\documentclass[12pt]{lettre}
+% ============================== PREAMBLE =====================================
+% Encoding-------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+
+% Colors and links ----------------
+\usepackage{xcolor}
+\usepackage[colorlinks=true,urlcolor=cyan]{hyperref} 
+
+% Special letters commands -------
+% This is to remove the folding line
+\makeatletter
+\newcommand*{\NoRule}{\renewcommand*{\rule@length}{0}}
+\makeatother
+% ============================== FRONT MATTER =================================
+\title{}
+\author{}
+\date{\today}
+% ============================= END OF PREAMBLE ===============================
+\begin{document}
+\begin{letter}{% receiver --------
+M.Leslie \textsc{Lamport}\\
+12 Rue Donald Knuth \\
+\TeX-ville, USA.
+}
+
+
+% Page setting adjustments --------
+\NoRule
+\marge{-0.3cm}
+\def\concname{Objet :~} % definition of \conc command
+
+% Header --------------------------
+\name{Jean-Random \textsc{Hacker}} % the name which will appear in the signature
+
+\address{Jean-Random \textsc{Hacker}\\ % what appears in the top-left part of the letter
+42 rue Douglas Adams \\
+31337 Perpette-les-Oies}
+
+\lieu{Perpette-les-Oies} % the place where the letter is written (goes to top-right corner with the date)
+
+\telephone{00 00 00 00 00}
+
+\email{\href{mailto:jrandom@hacker.org}{jrandom@hacker.org}}
+
+\nofax
+
+\conc{Félicitations}
+ % Letter body -------------------
+\opening{Monsieur,}
+Je trouve que \LaTeX est un logiciel formidable. 
+\closing{En vous remerciant de l’attention que vous porterez à cette lettre, 
+je vous prie de croire, Monsieur, à l’assurance de mes plus cordiales salutations.}
+\end{letter}
+\end{document}

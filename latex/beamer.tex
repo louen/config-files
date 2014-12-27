@@ -1,0 +1,137 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                          LaTeX beamer template                              %
+%       © 2010-2014 Valentin Roussellet (louen_AD_palouf.org)                 %
+%    Distributed under the terms of WTFPL v2, see http://sam.zoy.org/wtfpl    %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass{beamer}
+% A reminder for beamer themes and colors
+%                       Themes
+% -----------------------------------------------------------------------------
+% * Warsaw : black / colored toc above. Most commoly used
+% * Copenhagen : like Warsaw without shadows
+% * Marburg : black to blue right-sided toc
+% * Berlin : colored panels above the text
+% * Antibes : a lot like berlin
+% * PaloAlto : colored left-sided toc
+%                       Colors
+%------------------------------------------------------------------------------
+%   Name               background       titles          text
+% * orchid (default)   white            dark blue       black
+% * albatross          blue             light blue      white
+% * beetle             grey             white           black
+% * crane              white            black/yellow    black
+% ============================== PREAMBLE =====================================
+% Beamer settings ----------------
+\mode<presentation>{
+  \usetheme{Marburg}                            % theme (see above)
+  \usecolortheme{orchid}                        % theme color (id)
+  \setbeamercovered{transparent}                % For transparent zones
+}
+
+% Encoding and fonts -------------
+\usepackage[utf8]{inputenc}                     % Input encoding
+\usepackage[T1]{fontenc}                        % Output encoding
+\usepackage{lmodern}                            % Modern font
+
+% Language -----------------------
+%\usepackage[right]{eurosym}                     % Symbol for euro
+
+% Useful packages ----------------
+\usepackage{listings}                           % for source code inclusion
+
+% Mathematical symbols------------
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+% Custom colors -----------------
+\definecolor{codebg}{rgb}{0.97,0.97,0.97}
+\definecolor{codecomment}{rgb}{0,0.5,0}
+\definecolor{codestring}{rgb}{0.5,0,0}
+
+% Listings setup -----------------
+\lstset{language=C,                             % programming language
+%morekeywords={},                                % additionnal keywords
+basicstyle=\small\ttfamily,                     % style of the code
+keywordstyle=\color{blue}\bfseries,             % style of the keywords
+stringstyle=\color{codestring},                 % style of the strings
+commentstyle=\color{codecomment},               % style of the comments
+showspaces=false,                               % do not underline spaces in code
+showstringspaces=false,                         % do not underline spaces in strings
+showtabs=false,                                 % do not underline tabs
+numbers=left,                                   % where are the line-numbers
+numberstyle=\footnotesize,                      % style of the line-numbers
+backgroundcolor=\color{codebg},                 % background-color
+stepnumber=1,                                   % the step between two line-numbers.
+extendedchars=true,                             % allows extended characters
+columns=flexible,                               % sets the columns to non-fixed width
+tabsize=2,                                      % sets the tabulation width
+frame=trBL,                                     % adds a frame around the code with double line on the bottom
+frameround=tttt,                                % rounds the frame
+breaklines=true,                                % line breaks automatically
+breakautoindent=true,                           % keep indentation level withh line breaks
+captionpos=b                                    % the caption is at the bottom
+}
+
+% Additional beamer commands ------
+% this command prints a frame toc at each section beginning
+\AtBeginSection[] {
+  \begin{frame}
+      \frametitle{What next ?}
+      \tiny{\tableofcontents[currentsection]}
+  \end{frame}
+}
+
+% ============================== FRONT MATTER =================================
+\title{}
+\subtitle{}
+\author{}
+\institute[]{}
+\date{\today}
+\subject{}                                      % Information PDF
+%\logo{\includegraphics[height=1cm]{logo.png}}  % Logo
+
+% ============================= END OF PREAMBLE ===============================
+\begin{document}
+\begin{frame}
+  \titlepage
+    \end{frame}
+
+\begin{frame}
+    \frametitle{Contents}
+    \tiny{\tableofcontents}
+\end{frame}
+\section{A section}
+\subsection{Samples}
+\begin{frame}
+  \frametitle{sample frame}
+  Normal text
+  \begin{block}{A block}
+   Text in a block
+  \end{block}
+  \begin{exampleblock}{Another block}
+   Text in an example block
+  \end{exampleblock}
+  \pause
+  \begin{alertblock}{Yet another block}
+   Text in an warning block
+  \end{alertblock}
+\end{frame}
+
+% WARNING : every frame with code in it must be declared [fragile]
+% and the \end{frame} should not be indented (see beamer documentation)
+\begin{frame}[fragile]
+  \frametitle{sample code}
+\begin{lstlisting}
+#include <stdio.h>
+int i = 0;
+\end{lstlisting}
+\end{frame}
+\section{Another Section}
+\begin{frame}
+  \begin{itemize}
+   \item foo
+   \item bar
+  \end{itemize}
+\end{frame}
+\end{document}
