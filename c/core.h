@@ -10,6 +10,8 @@
 // code when possible.
 
 
+// A good reference : http://sourceforge.net/p/predef/
+
 // Supported platforms (* = tested)
 // GCC 4.9 *
 // Clang
@@ -36,12 +38,43 @@
 #endif
 
 // ----------------------------------------------------------------------------
-// Architecture specifics
+// OS and architecture identification
 // ----------------------------------------------------------------------------
+
+#if defined(_WIN32) || defined(_WIN64)
+    #define OS_WINDOWS
+    #if defined(_M_64)
+        #define ARCH_X64
+    #elif defined(_M_IX86)
+        #define ARCH_X86
+    #else
+        #error unsupported arch
+    #endif
+#elif defined(__APPLE__) || defined(__MACH__)
+    #define OS_MACOS
+    #if defined(__i386__)
+        #define ARCH_X86
+    #elif defined(__x86_64__) || defined (__x86_64)
+        #define ARCH_X64
+    #else
+        #error unsupported arch
+    #endif
+#elif defined(__linux__) || defined (__CYGWIN__)
+    #define OS_LINUX
+    #if defined(__i386__)
+        #define ARCH_X86
+    #elif defined(__x86_64__) || defined (__x86_64)
+        #define ARCH_X64
+    #else
+        #error unsupported arch
+    #endif
+#else
+    #error unsupported OS
+#endif
+
 
 // endianness
 // pointer sixe
-// 32 or 64 bits ?
 
 // ----------------------------------------------------------------------------
 // Build configuration
@@ -103,18 +136,28 @@
 #endif
 
 // Platform-independant macros
-// Note : there is alignof in C++ 11
+// Note : there is support of deprecated and alignof in C++ 11
 #if defined (COMPILER_MSVC)
+
     #define ALIGN_OF(X) __alignof(X)
     #define ALIGNED(DECL,ALIGN) __declspec(align(ALIGN)) DECL
+
     // Unfortunately visual studio does not have a branch prediction primitive.
     #define UNLIKELY(IFEXPR) IFEXPR
     #define LIKELY(IFEXPR)   IFEXPR
+
+    #define DEPRECATED __declspec(deprecated)
+
 #elif defined(COMPILER_GCC) || defined (COMPILER_CLANG)
+
     #define ALIGN_OF(X) __alignof__(X) 
     #define ALIGNED(DECL,ALIGN) DECL __attribute__((aligned(ALIGN)))
+
     #define UNLIKELY(IFEXPR) __builtin_expect(bool(IFEXPR),0)
     #define LIKELY(IFEXPR)   __builtin_expect(bool(IFEXPR),1)
+
+    #define DEPRECATED __attribute__((deprecated))
+
 #else
     #error unsupported platform
 #endif
