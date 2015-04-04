@@ -61,12 +61,12 @@ if [ -x /usr/bin/dircolors ]
 then
   if [ -r ~/.dir_colors ]
   then
-    eval "`dircolors ~/.dir_colors`"
+    eval "`dircolors -b ~/.dir_colors`"
   elif [ -r /etc/dir_colors ]
   then
-    eval "`dircolors /etc/dir_colors`"
+    eval "`dircolors -b /etc/dir_colors`"
   else
-    eval "`dircolors`"
+    eval "`dircolors -b`"
   fi
 fi
 
