@@ -1,0 +1,67 @@
+#!/bin/bash
+
+# [1] General commands
+######################
+
+# Enable color if dir-colors are here
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    #alias dir='dir --color=auto'
+    #alias vdir='vdir --color=auto'
+
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+# Shortcuts for ls
+alias ls='ls --classify --tabsize=0 --literal --color=auto --show-control-chars --human-readable'
+
+alias la='ls -A'    # list everything (inlc. hidden files) except . and ..
+alias ll='ls -lh'   # long list with human readable sizes
+alias lla='ls -lAh' # list all with long format
+alias lr='ls -R'    # recursive list
+alias llr='ls -lRh' # recursive list with long format
+
+# Directories management
+alias md='mkdir'
+alias rd='rmdir'
+alias s='cd ..'
+
+# Default commands use "human-readable" mode for sizes
+alias df='df --human-readable'
+alias du='du --human-readable'
+
+# Force commands to ask confirmation to avoid overwriting a file
+alias rm="rm --interactive"
+alias cp="cp --interactive"
+alias mv="mv --interactive"
+
+# Force english manuals
+alias man='LANG=C man'
+
+# [2]  Sysadmin corner
+######################
+
+# Upgrade shortcut
+alias upgrade='apt-get update && apt-get upgrade  '
+alias distupgrade='apt-get update && apt-get dist-upgrade  '
+alias ug="upgrade"
+
+# Apache 2
+alias a2reload="/etc/init.d/apache2 reload"
+alias a2restart="/etc/init.d/apache2 restart"
+
+# [3] Dev corner
+################
+
+# Debug and release shortcuts for cmake
+alias cmaked="cmake $1 -DCMAKE_BUILD_TYPE=DEBUG"
+alias cmaker="cmake $1 -DCMAKE_BUILD_TYPE=RELEASE"
+
+
+# Add an "alert command" to wake you up after running a long command
+# Example usage: sleep 100; alert
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|    tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+

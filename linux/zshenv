@@ -6,26 +6,26 @@
 
 # Default environnement variables.
 
-# Path configuration. Does NOT includes the current dir. 
+# Path configuration. Does NOT includes the current dir.
 export PATH="/usr/local/bin:/usr/local/sbin:/bin:/usr/bin:/usr/sbin:/usr/bin/X11:/usr/X11R6/bin:/usr/games:/sbin:$HOME/bin"
 
 # Vim is our default text editor
 export VISUAL=vim
 export EDITOR=vim
 
-# Permissions rw-r--r-- for creted files 
-# et rwxr-xr-x for directories 
+# Permissions rw-r--r-- for creted files
+# et rwxr-xr-x for directories
 umask 022
 
 # Configure your http or ftp proxies here.
 
-# No password needed 
+# No password needed
 #export http_proxy="http://proxy.exemple.org:8080"
 #export ftp_proxy="ftp://proxy.exemple.org:8080"
 
-# Password needed 
+# Password needed
 #export http_proxy="http://login:password@proxy.exemple.org:8080"
 #export ftp_proxy="ftp://login:password@proxy.exemple.org:8080"
 
-# Configure domains for which proxies are ignored 
+# Configure domains for which proxies are ignored
 #export no_proxy="exemple.org"

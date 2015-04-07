@@ -3,7 +3,7 @@
 # (C) Formation Debian GNU/Linux iby Alexis de Lattre
 # http://formation-debian.via.ecp.fr/
 
-# Execute command when logging out a console 
+# Execute command when logging out a console
 
-# Clears the screen 
+# Clears the screen
 clear

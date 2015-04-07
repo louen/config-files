@@ -1,5 +1,5 @@
 # /etc/zsh/zshrc ou ~/.zshrc
-# Main ZSH config file. 
+# Main ZSH config file.
 # (C)Formation Debian GNU/Linux by Alexis de Lattre
 # http://formation-debian.via.ecp.fr/
 # modified by louen -- louen at palouf.org
@@ -8,23 +8,23 @@
 # 1.   alias   #
 ################
 
-# ls configuration : keep color, keep in line, show accents 
+# ls configuration : keep color, keep in line, show accents
 alias ls='ls --classify --tabsize=0 --literal --color=auto --show-control-chars --human-readable'
 
-# grep configuration : enable color by default 
+# grep configuration : enable color by default
 alias grep='grep --color=auto'
 
-# Always ask before overwriting a file 
+# Always ask before overwriting a file
 alias cp='cp --interactive'
 alias mv='mv --interactive'
 alias rm='rm --interactive'
 
-# ls common shortcuts 
+# ls common shortcuts
 alias ll='ls -l'
 alias la='ls -a'
 alias lla='ls -la'
 
-# Useful commands 
+# Useful commands
 alias c='clear'
 alias less='less --quiet'
 alias s='cd ..'
@@ -39,10 +39,10 @@ alias a2reload="/etc/init.d/apache2 reload"
 alias a2restart="/etc/init.d/apache2 restart"
 
 #######################################
-# 2. Prompt and key configurations    # 
+# 2. Prompt and key configurations    #
 #######################################
 
-# Bind key to actions 
+# Bind key to actions
 bindkey ''    beginning-of-line       # Home
 bindkey ''    end-of-line             # End
 bindkey ''    delete-char             # Del
@@ -52,14 +52,14 @@ bindkey '[5~' history-search-backward # PgUp
 bindkey '[6~' history-search-forward  # PgDn
 
 # Our prompt will display the time, user name in red (or blue if root),
-# the hostname  and the current directory 
+# the hostname  and the current directory
 if [ "`id -u`" -eq 0 ]; then
   export PS1="%{[36;1m%}%T %{[34m%}%n%{[33m%}@%{[37m%}%m %{[32m%}%~%{[33m%}%#%{[0m%} "
 else
   export PS1="%{[36;1m%}%T %{[31m%}%n%{[33m%}@%{[37m%}%m %{[32m%}%~%{[33m%}%#%{[0m%} "
 fi
 
-# Key bindings for specific terms 
+# Key bindings for specific terms
 if [ "$TERM" = "linux" -o "$TERM" = "screen" -o "$TERM" = "rxvt" ]
 then
   bindkey '[1~' beginning-of-line       # Home
@@ -80,7 +80,7 @@ then
   bindkey 'OF'  end-of-line             # End
 fi
 
-# window title 
+# window title
 case $TERM in
    xterm*)
        precmd () {print -Pn "\e]0;%n@%m: %~\a"}
@@ -90,7 +90,7 @@ case $TERM in
        ;;
 esac
 
-# use ls colors with dircolors 
+# use ls colors with dircolors
 if [ -x /usr/bin/dircolors ]
 then
   if [ -r ~/.dir_colors ]
@@ -106,104 +106,104 @@ fi
 
 
 ###########################################
-# 3. ZSH options (see man zshoptions)     # 
+# 3. ZSH options (see man zshoptions)     #
 ###########################################
 
 # Deactivate beeps
 unsetopt beep
 unsetopt hist_beep
 unsetopt list_beep
-# `>|` should be use when overwriting  the content of a file 
-# `>`will only work on empty or nonexistent file names.  
+# `>|` should be use when overwriting  the content of a file
+# `>`will only work on empty or nonexistent file names.
 unsetopt clobber
-# C-d is equivalent to logout 
+# C-d is equivalent to logout
 unsetopt ignore_eof
-# Print the exit value if != 0 
+# Print the exit value if != 0
 setopt print_exit_value
-# Ask for confirm for ̀rm *` 
+# Ask for confirm for ̀rm *`
 unsetopt rm_star_silent
-# Do not enable correction of commands  
+# Do not enable correction of commands
 #setopt correct
-# Do not return an error if we use wildcards expanding to nothing 
+# Do not return an error if we use wildcards expanding to nothing
 setopt nullglob
 
 # Different autocomplete modes
 
-# mode A (default mode) 
-# 1st tabulation : completes until ambiguity 
-# 2nd tabulation : displays the list of choices 
+# mode A (default mode)
+# 1st tabulation : completes until ambiguity
+# 2nd tabulation : displays the list of choices
 # 3rd tabulation : completes with first list item
 # 4th tabulation : completes with second list item, etc.
 
 # mode B :
-# 1st tabulation : displays the list of choices and completes 
-#                  with the first item of the list 
-# 2nd tabulation : completes with second list item, etc. 
+# 1st tabulation : displays the list of choices and completes
+#                  with the first item of the list
+# 2nd tabulation : completes with second list item, etc.
 #setopt menu_complete
 
 # Mode C :
-# 1st tabulation : displays the list of choices and completes 
-#                  until ambiguity 
+# 1st tabulation : displays the list of choices and completes
+#                  until ambiguity
 # 2nd tabulation : completes with first list item
 # 3rd tabulation : completes with second list item, etc.
 #unsetopt list_ambiguous
 
-# Autocomplete options 
-# When '/' is the last caracter of a completion, erase it 
+# Autocomplete options
+# When '/' is the last caracter of a completion, erase it
 setopt auto_remove_slash
-# Do not complete on hidden directories 
+# Do not complete on hidden directories
 unsetopt glob_dots
 
-# Follow symlinks 
+# Follow symlinks
 setopt chase_links
 
-# When using '!' for history completion, write the command 
-# instead of running it immediately. 
+# When using '!' for history completion, write the command
+# instead of running it immediately.
 setopt hist_verify
 # Invalid commands that match a director name execute 'cd directory"
 setopt auto_cd
-# 'cd' automatically pushes dirs on the stack 
+# 'cd' automatically pushes dirs on the stack
 setopt auto_pushd
-# Ignore duplicates in the stack 
+# Ignore duplicates in the stack
 setopt pushd_ignore_dups
-# Pushing in the stack is silent 
+# Pushing in the stack is silent
 setopt pushd_silent
-# Pushing with no argument goes to home dir 
+# Pushing with no argument goes to home dir
 setopt pushd_to_home
 
-# Background jobs are set to nice 0 
+# Background jobs are set to nice 0
 unsetopt bg_nice
-# No hangup signal to background job when the shell exits 
+# No hangup signal to background job when the shell exits
 unsetopt hup
 
 
 #################################
-# 4. Command history parameters # 
+# 4. Command history parameters #
 #################################
 
-# History size 
+# History size
 export HISTORY=1000
 export SAVEHIST=1000
 
-# History location 
+# History location
 export HISTFILE=$HOME/.history
 
-# append the history 
+# append the history
 #setopt append_history
 
-# Incrementally write a command line in history as it is written; 
+# Incrementally write a command line in history as it is written;
 setopt inc_append_history
 
-# Ignore local duplicates in history 
+# Ignore local duplicates in history
 setopt hist_ignore_dups
 
-# Ignore global duplicates in history 
+# Ignore global duplicates in history
 #setopt hist_ignore_all_dups
 
-# Remove duplicates only when history is full 
+# Remove duplicates only when history is full
 setopt hist_expire_dups_first
 
-# Do not save the duplicates on any session. 
+# Do not save the duplicates on any session.
 #setopt hist_save_no_dups
 
 # Do not show duplicates in searches.
@@ -211,7 +211,7 @@ setopt hist_find_no_dups
 
 
 ####################################
-# 5. In-command completion options # 
+# 5. In-command completion options #
 ####################################
 
 zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}'
