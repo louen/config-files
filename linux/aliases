@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # Aliases file for bash-like terminals.
+# The shebang is mostly for syntax highlight to work in vim.
 
 # [1] General commands
 ######################
@@ -8,17 +9,19 @@
 # Enable color if dir-colors are here
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
+    alias ls='ls --color=auto --classify --tabsize=0 --literal --show-control-chars --human-readable'
     #alias dir='dir --color=auto'
     #alias vdir='vdir --color=auto'
 
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
+else
+    alias ls='ls --classify --tabsize=0 --literal --show-control-chars --human-readable'
 fi
 
+
 # Shortcuts for ls
-alias ls='ls --classify --tabsize=0 --literal --color=auto --show-control-chars --human-readable'
 
 alias la='ls -A'    # list everything (inlc. hidden files) except . and ..
 alias ll='ls -lh'   # long list with human readable sizes

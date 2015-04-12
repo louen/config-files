@@ -1,0 +1,22 @@
+! Config file for common X apps like xterm
+! Xterm configuration
+
+xterm*faceName:     Source Code Pro:stle=Regular:size=9
+
+xterm*foreground:   rgb:f0/f0/f0
+xterm*background:   rgb:10/10/10
+
+xterm*termName:     xterm
+xterm*locale:       true
+xterm*saveLines :   4096
+
+
+! urxvt coniguration
+URxvt*.font:    xft:Source Code Pro:stle=Regular:size=9
+
+URxvt*.scrollBar:       false 
+URxvt*.termName:        xterm
+URxvt*.transparent :    true
+URxvt*.shading :        30 
+URxvt*foreground:       rgb:f0/f0/f0
+URxvt*.background :     rgb:10/10/10
