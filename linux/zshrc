@@ -4,42 +4,8 @@
 # http://formation-debian.via.ecp.fr/
 # modified by louen -- louen at palouf.org
 
-################
-# 1.   alias   #
-################
-
-# ls configuration : keep color, keep in line, show accents
-alias ls='ls --classify --tabsize=0 --literal --color=auto --show-control-chars --human-readable'
-
-# grep configuration : enable color by default
-alias grep='grep --color=auto'
-
-# Always ask before overwriting a file
-alias cp='cp --interactive'
-alias mv='mv --interactive'
-alias rm='rm --interactive'
-
-# ls common shortcuts
-alias ll='ls -l'
-alias la='ls -a'
-alias lla='ls -la'
-
-# Useful commands
-alias c='clear'
-alias less='less --quiet'
-alias s='cd ..'
-alias df='df --human-readable'
-alias du='du --human-readable'
-alias m='mutt -y'
-alias md='mkdir'
-alias rd='rmdir'
-alias upgrade='apt-get update && apt-get full-upgrade  '
-alias ug="upgrade"
-alias a2reload="/etc/init.d/apache2 reload"
-alias a2restart="/etc/init.d/apache2 restart"
-
 #######################################
-# 2. Prompt and key configurations    #
+# 1. Prompt and key configurations    #
 #######################################
 
 # Bind key to actions
@@ -106,7 +72,7 @@ fi
 
 
 ###########################################
-# 3. ZSH options (see man zshoptions)     #
+# 2. ZSH options (see man zshoptions)     #
 ###########################################
 
 # Deactivate beeps
@@ -178,7 +144,7 @@ unsetopt hup
 
 
 #################################
-# 4. Command history parameters #
+# 3. Command history parameters #
 #################################
 
 # History size
@@ -211,7 +177,7 @@ setopt hist_find_no_dups
 
 
 ####################################
-# 5. In-command completion options #
+# 4. In-command completion options #
 ####################################
 
 zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}'
@@ -221,3 +187,10 @@ zstyle ':completion:*' use-compctl false
 autoload -U compinit
 compinit
 
+###############
+# 5. Aliases  #
+###############
+
+if [ -f ~/.aliases ]; then
+    . ~/.aliases
+fi

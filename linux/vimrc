@@ -96,7 +96,7 @@ set incsearch
 " Display line numbers
 set number
 
-" Gvim configuration (can also go in .gvimrc_)
+" Gvim configuration (can also go in .gvimrc)
 set guifont=Ubuntu\ Mono\ 12
 
 
