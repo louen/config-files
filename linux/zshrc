@@ -191,6 +191,10 @@ compinit
 # 5. Aliases  #
 ###############
 
+if [ -f /etc/zsh/aliases ]; then
+    . /etc/zsh/aliases
+fi
+
 if [ -f ~/.aliases ]; then
     . ~/.aliases
 fi
