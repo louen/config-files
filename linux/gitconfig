@@ -3,11 +3,17 @@
 	name = Valentin Roussellet
 [diff]
 	tool = meld
+
+[difftool]
+	prompt = false
+
 [merge]
 	tool = meld
 	conflictstyle = diff3
+
 [credential]
 	helper = cache --timeout=86400
+
 [alias]
 	st = status
 	stat = status
