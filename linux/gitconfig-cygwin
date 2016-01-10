@@ -1,0 +1,8 @@
+#git config additions for cygwin
+# Meld.exe has to be in the path (or replace with full path)
+
+[core]
+	autocrlf = true
+
+[difftool "meld"]
+    cmd = "Meld.exe $(cygpath -w $LOCAL) $(cygpath -w $REMOTE)"
