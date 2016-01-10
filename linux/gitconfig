@@ -1,0 +1,16 @@
+[user]
+	email = [snip] 
+	name = Valentin Roussellet
+[diff]
+	tool = meld
+[merge]
+	tool = meld
+	conflictstyle = diff3
+[credential]
+	helper = cache --timeout=86400
+[alias]
+	st = status
+	stat = status
+	lol = log --oneline --graph --decorate
+[push]
+	default = matching
