@@ -17,12 +17,12 @@ if [ -x /usr/bin/dircolors ]; then
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 else
+    # No colors for ls but still the other options
     alias ls='ls --classify --tabsize=0 --literal --show-control-chars --human-readable'
 fi
 
 
 # Shortcuts for ls
-
 alias la='ls -A'    # list everything (inlc. hidden files) except . and ..
 alias ll='ls -lh'   # long list with human readable sizes
 alias lla='ls -lAh' # list all with long format
