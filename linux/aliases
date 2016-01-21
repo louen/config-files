@@ -62,8 +62,8 @@ alias a2restart="/etc/init.d/apache2 restart"
 ################
 
 # Debug and release shortcuts for cmake
-alias cmaked="cmake $1 -DCMAKE_BUILD_TYPE=DEBUG"
-alias cmaker="cmake $1 -DCMAKE_BUILD_TYPE=RELEASE"
+alias cmaked="cmake $1 -DCMAKE_BUILD_TYPE=Debug"
+alias cmaker="cmake $1 -DCMAKE_BUILD_TYPE=Release"
 
 
 # Add an "alert command" to wake you up after running a long command
