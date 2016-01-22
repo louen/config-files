@@ -1,0 +1,101 @@
+" A tweaked vimrc for day to day editing 
+" 
+" Uses the "minimal vimrc" as a base
+" It only uses standard features of vim to be portable
+" across platforms. 
+
+"1. Minimal vimrc
+"================
+
+" This must be first, because it changes other options as a side effect.
+set nocompatible
+
+" Make backspace behave in a sane manner.
+set backspace=indent,eol,start
+
+" Switch syntax highlighting on
+syntax on
+
+" Enable file type detection and do language-dependent indenting.
+filetype plugin indent on
+
+" Show line numbers
+set number
+
+" Allow hidden buffers, don't limit to 1 file per window/split
+set hidden
+
+" Use visual bell (i.e. flash) instead of beeps.
+set visualbell
+
+
+" 2. Text formatting 
+" ==================
+
+" Do not wrap long lines
+set nowrap
+
+" When adding a new line, it will keep the indentation level of the
+" current line.
+set autoindent
+
+" Keep one line visible above and below the cursor
+set scrolloff=1
+
+" == Tabs and indentation ==
+" Reference : http://tedlogan.com/techblog3.html
+" In modern code tabs are printed as 4 spaces.
+
+" Some prefer real tabs and some prefer spaces.
+" Here we use spaces only.
+set expandtab
+
+"    use `set noexpandtab` if you want real tabs.
+"    The rest of the settings should work consistently.
+
+" Number of columns an indentation level will be displayed as. 
+set tabstop=4 
+
+" Number of spaces inserted when indenting ( >> ) 
+set shiftwidth=4 
+
+" Number of spaces inserted when pressing tab. 
+" This is only useful if different from tabstop 
+set softtabstop=4
+
+" 3. Status line and informations
+" ===============================
+
+" Show the command you are typing in the status bar 
+set showcmd
+
+" Always show a status bar even with one file
+set laststatus=2
+
+" == Status line configuration == 
+
+" Prepare a highlight group for file names
+highlight User1 ctermfg=black ctermbg=grey
+
+" Left side : prints file and flags.
+set statusline=%<         " Truncate from here if too long.
+set statusline+=%1*       " Switch highlight to User1
+set statusline+=%t        " File name
+set statusline+=\         " 
+set statusline+=%*        " Switch hilight to normal 
+set statusline+=[%{strlen(&fenc)?&fenc:'none'}] " File encoding
+set statusline+=%m        " [+] if file is modified, [-] if not modifiable
+set statusline+=%r        " [RO] if file is readonly
+set statusline+=%y        " File type in [ ]
+
+set statusline+=%=        " Take a walk on the right side
+
+" Right side : emulate `set ruler` 
+set statusline+=%1*       " Switch highlight to User1
+set statusline+=%-15.(\ %l,%c%V%)  " Print line number, column numbers
+set statusline+=%*        " Switch hilight to normal 
+set statusline+=%P        " Print file percentage  
+
+" == colors etc.
+set background=dark
+

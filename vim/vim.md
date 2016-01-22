@@ -18,6 +18,19 @@ a few tweaks of my own, which is in `vimrc.minimal`
 
 ## A good console editor
 
+Now my goal will be to make vim useable as my main editor in 
+a terminal, to edit files as a sysadmin or to make a quick
+fix in a program. So the configuration will need to be 
+simple and fast to load, with no frills, but still make
+it convenient to use. Also it will need to work with
+all kind of terminals. `vimrc.standard` 
+
+### Text formatting
+
+### Status line
+
+### Color schemes
+
 ## A good graphical editor
 
 ## Compatibility across OS
