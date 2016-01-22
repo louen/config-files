@@ -2,6 +2,9 @@
 
 `vim` rules. Vim is useful everywhere but it needs configuration.
 Sometimes different configurations for different use cases.
+This is mainly a doc for me as I was building the perfect vimrc for me.
+
+Note : `vim -u config_file` to force the use of a given config
 
 ## The minimal vimrc
 
