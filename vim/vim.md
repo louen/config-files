@@ -6,6 +6,10 @@ This is mainly a doc for me as I was building the perfect vimrc for me.
 
 Note : `vim -u config_file` to force the use of a given config
 
+I will try to detail why each option is there, mostly as a way
+to remember it myself but who knows, it can be useful for 
+somebody else.
+
 ## The minimal vimrc
 
 Many vim tutorials recommend using the smallest possible vimrc
@@ -26,6 +30,20 @@ it convenient to use. Also it will need to work with
 all kind of terminals. `vimrc.standard` 
 
 ### Text formatting
+
+This section is fairly straightforward, most of it is concerned
+by tabs and indentation.
+
+In my file I chose to write spaces instead of real tabs, but
+this can easily be overriden, even on a file type basis (this
+is done automatically for Makefiles for example).
+
+The rest of the config here is about how many spaces a tab 
+is worth.
+Default is 8, but most modern editors use 4 (though some people
+prefer 2).
+The only caveat is to keep the `tabstop`, `shiftwidth` 
+and `softtabstop` consistent.
 
 ### Status line
 
