@@ -1,5 +1,7 @@
 " A tweaked vimrc for day to day editing 
 " 
+" Original Author : Valentin Roussellet
+"                   louen -at- palouf.org
 " Uses the "minimal vimrc" as a base
 " It only uses standard features of vim to be portable
 " across platforms. 
@@ -79,14 +81,13 @@ highlight User1 ctermfg=black ctermbg=grey
 
 " Left side : prints file and flags.
 set statusline=%<         " Truncate from here if too long.
-set statusline+=%1*       " Switch highlight to User1
-set statusline+=%t        " File name
-set statusline+=\         " 
-set statusline+=%*        " Switch hilight to normal 
 set statusline+=[%{strlen(&fenc)?&fenc:'none'}] " File encoding
 set statusline+=%m        " [+] if file is modified, [-] if not modifiable
 set statusline+=%r        " [RO] if file is readonly
 set statusline+=%y        " File type in [ ]
+set statusline+=%1*       " Switch highlight to User1
+set statusline+=%40.(\ \ %F\ \ %)        " File name
+set statusline+=%*        " Switch hilight to normal
 
 set statusline+=%=        " Take a walk on the right side
 
@@ -96,6 +97,12 @@ set statusline+=%-15.(\ %l,%c%V%)  " Print line number, column numbers
 set statusline+=%*        " Switch hilight to normal 
 set statusline+=%P        " Print file percentage  
 
-" == colors etc.
+" 4. Colors
+" =========
+
+" When you go dark you never go back
 set background=dark
+
+" Use a standard colorscheme that works everywhere.
+colorscheme elflord
 
