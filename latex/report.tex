@@ -1,0 +1,114 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                          LaTeX report template                              %
+%              © 2010 Valentin Roussellet (louen_AD_palouf.org)               %
+%    Distributed under the terms of WTFPL v2, see http://sam.zoy.org/wtfpl    %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[a4paper]{report}
+
+% Notes : this template includes all the packages I used to produce reports 
+% papers etc. Not all of them are useful, so uncomment the ones you don't need
+
+% Usual layout in English / French documents :
+%
+%       English                 French
+%                               remerciements
+%                               table des abréviations
+%                               sommaire (short ToC)
+%                               = corps du document =
+%                               bibliographie
+%                               annexes
+%                               glossaire
+%                               table des matieres
+%                               tables des figures, listings, etc.
+%                               index
+% ============================== PREAMBLE =====================================
+% Encoding --------------------------------------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% Uncomment this if you are typing in french
+%\usepackage[french]{babel}
+
+% Margins redefinition ---------------------------------------------------------
+\usepackage{geometry}
+\geometry{hmargin=2.5cm, vmargin=2.2cm }
+
+% Custom colors -----------------
+\definecolor{codebg}{rgb}{0.95,0.95,0.95}       % light grey for code background
+\definecolor{codecomment}{rgb}{0,0.5,0}         % comments in green
+\definecolor{codestring}{rgb}{0.5,0,0}          % strings in red
+
+% Useful packages  -------------------------------------------------------------
+\usepackage{graphicx}                           % including images
+\usepackage{url}                                % proper typesetting of URLs
+\usepackage{xcolor}                             % color texts
+\usepackage[tight]{shorttoc}                    % for a short summary
+\usepackage{listings}                           % for source code inclusion
+
+% for links in the document
+\usepackage[colorlinks=true, linkcolor=blue, citecolor=blue]{hyperref} 
+
+% Glossary ------------------------
+\usepackage[style=list,number=none,toc=true]{glossary}
+\makeglossary
+
+% Mathematical symbols and shortcuts -------------------------------------------
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{asmthm}
+\usepackage{mathrsfs}
+
+\newtheorem{lemma}{Lemma}
+\newtheorem{property}{Property}
+
+
+% Listings setup -----------------
+\lstset{language=C,                             % programming language
+morekeywords={},                                % additionnal keywords
+basicstyle=\small\ttfamily,                     % style of the code
+keywordstyle=\color{blue}\bfseries,             % style of the keywords
+stringstyle=\color{codestring},                 % style of the strings
+commentstyle=\color{codecomment},               % style of the comments
+showspaces=false,                               % do not underline spaces in code
+showstringspaces=false,                         % do not underline spaces in strings
+showtabs=false,                                 % do not underline tabs
+numbers = left,                                 % where are the line-numbers
+numberstyle=\footnotesize,                      % style of the line-numbers
+backgroundcolor=\color{codebg},                 % background-color
+stepnumber=1,                                   % the step between two line-numbers.
+extendedchars=true,                             % allows extended characters
+columns=flexible,                               % sets the columns to non-fixed width
+tabsize=2,                                      % sets the tabulation width
+frame=trBL,                                     % adds a frame around the code with double line on the bottom
+frameround=tttt,                                % rounds the frame
+breaklines=true,                                % line breaks automatically
+breakautoindent=true,                           % keep indentation level withh line breaks
+captionpos=b,                                   % the caption is at the bottom
+}
+
+% ============================== FRONT MATTER =================================
+
+\title{}
+\author{}
+\date{}
+
+% ============================= END OF PREAMBLE ===============================
+\begin{document}
+
+\maketitle              % Page 1 : title page 
+\newpage                % Page break
+\tableofcontents        % Page 2 : table of contents
+\clearpage              % Page break
+\phantomsection
+
+% Introduction outside standard section numerotation
+\setcounter{section}{0}
+\addcontentsline{toc}{section}{Introduction}
+\section*{Introduction}
+
+% TEXT 
+
+\appendix
+\printglossary
+\end{document}
