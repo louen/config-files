@@ -7,7 +7,7 @@
 " across platforms. 
 
 "1. Minimal vimrc
-"================
+" ===============
 
 " This must be first, because it changes other options as a side effect.
 set nocompatible
@@ -31,23 +31,58 @@ set hidden
 set visualbell
 
 
-" 2. Text formatting 
+" 2. General VIM interface
+" ========================
+
+" Keep lines visible above and below the cursor
+set scrolloff=2
+
+" Add an extra column of padding on the left side.
+set foldcolumn=1
+
+" Allow left and right arrows to go up or down one line when at one end.
+set whichwrap=<,>,[,]
+
+" Try to keep the same column while moving up or down
+set nostartofline
+
+" If a file has been changed while being edited, automatically reload it
+set autoread
+
+" Allow terminal emulators with mouse support to use the mouse.
+if has('mouse')
+    set mouse=a
+endif
+
+" Show matching delimiters when writing one ( [], {}, () )
+set showmatch
+
+" Hilight matching for 20ms (instead of 50)
+set matchtime=2
+
+" Configure the messages printed at bottom line 
+" a = all terse messages (e.g. [+] instead of [Modified]
+" t = truncate file names
+" T = truncate long messages
+" o and O : only display the last message in write/read operations
+" I : don't display the intro message when starting vim without args.
+set shortmess=atToOI
+
+
+" 3. Text formatting 
 " ==================
 
 " Do not wrap long lines
 set nowrap
 
-" When adding a new line, it will keep the indentation level of the
-" current line.
-set autoindent
-
-" Keep one line visible above and below the cursor
-set scrolloff=1
-
 " == Tabs and indentation ==
 " Reference : http://tedlogan.com/techblog3.html
 " In modern code tabs are printed as 4 spaces.
 
+" When adding a new line, it will keep the indentation level of the
+" current line.
+set autoindent
+"
 " Some prefer real tabs and some prefer spaces.
 " Here we use spaces only.
 set expandtab
@@ -65,7 +100,29 @@ set shiftwidth=4
 " This is only useful if different from tabstop 
 set softtabstop=4
 
-" 3. Status line and informations
+" Inserting tabs at beginning of lines always insserts 4 spaces
+" inserting tabs in text inserts spaces up to the next tabstop
+set smarttab
+
+" 4. Search
+" =========
+
+" Searches ignore case by default ...
+set ignorecase
+
+" ... except if the pattern contains upper case caracters
+set smartcase
+
+" Note : if you want to force the search to be case sensitive, use /foo\C
+
+" Highlight matches when searching. use :noh to turn it off after the search.
+set hlsearch
+
+" Real-time display of the matched patterns while typing
+set incsearch
+
+
+" 5. Status line and informations
 " ===============================
 
 " Show the command you are typing in the status bar 
@@ -76,28 +133,25 @@ set laststatus=2
 
 " == Status line configuration == 
 
-" Prepare a highlight group for file names
-highlight User1 ctermfg=black ctermbg=grey
-
+set statusline=""
 " Left side : prints file and flags.
-set statusline=%<         " Truncate from here if too long.
 set statusline+=[%{strlen(&fenc)?&fenc:'none'}] " File encoding
 set statusline+=%m        " [+] if file is modified, [-] if not modifiable
 set statusline+=%r        " [RO] if file is readonly
 set statusline+=%y        " File type in [ ]
-set statusline+=%1*       " Switch highlight to User1
-set statusline+=%40.(\ \ %F\ \ %)        " File name
+set statusline+=%#todo#   " Switch highlight and use one of the highlight groups 
+set statusline+=%40.40(\ \ %<%F\ \ %) " File name, truncated left
 set statusline+=%*        " Switch hilight to normal
 
 set statusline+=%=        " Take a walk on the right side
 
 " Right side : emulate `set ruler` 
-set statusline+=%1*       " Switch highlight to User1
+set statusline+=%#todo#   " Switch highlight 
 set statusline+=%-15.(\ %l,%c%V%)  " Print line number, column numbers
 set statusline+=%*        " Switch hilight to normal 
 set statusline+=%P        " Print file percentage  
 
-" 4. Colors
+" 6. Colors
 " =========
 
 " When you go dark you never go back

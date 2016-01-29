@@ -29,6 +29,15 @@ simple and fast to load, with no frills, but still make
 it convenient to use. Also it will need to work with
 all kind of terminals. `vimrc.standard` 
 
+### General options
+
+The first section changes the general behavior of vim.
+
+The "fold column" adds a nice padding to the left and will 
+also be useful for foldings 
+
+
+
 ### Text formatting
 
 This section is fairly straightforward, most of it is concerned
