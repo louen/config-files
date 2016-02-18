@@ -1,4 +1,4 @@
-" A tweaked vimrc for day to day editing 
+" A tweaked vimrc for day to day editing
 " 
 " Original Author : Valentin Roussellet
 "                   louen -at- palouf.org
@@ -37,10 +37,10 @@ set visualbell
 " Keep lines visible above and below the cursor
 set scrolloff=2
 
-" Add an extra column of padding on the left side.
+" Add an extra column of padding on the left side
 set foldcolumn=1
 
-" Allow left and right arrows to go up or down one line when at one end.
+" Allow left and right arrows to go up or down one line when at one end
 set whichwrap=<,>,[,]
 
 " Try to keep the same column while moving up or down
@@ -49,7 +49,7 @@ set nostartofline
 " If a file has been changed while being edited, automatically reload it
 set autoread
 
-" Allow terminal emulators with mouse support to use the mouse.
+" Allow terminal emulators with mouse support to use the mouse
 if has('mouse')
     set mouse=a
 endif
@@ -60,7 +60,11 @@ set showmatch
 " Hilight matching for 20ms (instead of 50)
 set matchtime=2
 
-" Configure the messages printed at bottom line 
+" Using autocomplete with <tab>, if there is an ambiguity,
+" we list all possible options and complete with the first
+set wildmode=list:full
+
+" Configure the messages printed at bottom line
 " a = all terse messages (e.g. [+] instead of [Modified]
 " t = truncate file names
 " T = truncate long messages
@@ -77,27 +81,27 @@ set nowrap
 
 " == Tabs and indentation ==
 " Reference : http://tedlogan.com/techblog3.html
-" In modern code tabs are printed as 4 spaces.
+" In modern code tabs are printed as 4 spaces
 
 " When adding a new line, it will keep the indentation level of the
-" current line.
+" current line
 set autoindent
 "
-" Some prefer real tabs and some prefer spaces.
-" Here we use spaces only.
+" Some prefer real tabs and some prefer spaces
+" Here we use spaces only
 set expandtab
 
-"    use `set noexpandtab` if you want real tabs.
-"    The rest of the settings should work consistently.
+"    use `set noexpandtab` if you want real tabs
+"    The rest of the settings should work consistently
 
-" Number of columns an indentation level will be displayed as. 
+" Number of columns an indentation level will be displayed as
 set tabstop=4 
 
-" Number of spaces inserted when indenting ( >> ) 
+" Number of spaces inserted when indenting ( >> )
 set shiftwidth=4 
 
-" Number of spaces inserted when pressing tab. 
-" This is only useful if different from tabstop 
+" Number of spaces inserted when pressing tab
+" This is only useful if different from tabstop
 set softtabstop=4
 
 " Inserting tabs at beginning of lines always insserts 4 spaces
@@ -125,16 +129,16 @@ set incsearch
 " 5. Status line and informations
 " ===============================
 
-" Show the command you are typing in the status bar 
+" Show the command you are typing in the status bar
 set showcmd
 
 " Always show a status bar even with one file
 set laststatus=2
 
-" == Status line configuration == 
+" == Status line configuration ==
 
 set statusline=""
-" Left side : prints file and flags.
+" Left side : prints file and flags
 set statusline+=[%{strlen(&fenc)?&fenc:'none'}] " File encoding
 set statusline+=%m        " [+] if file is modified, [-] if not modifiable
 set statusline+=%r        " [RO] if file is readonly
@@ -145,11 +149,11 @@ set statusline+=%*        " Switch hilight to normal
 
 set statusline+=%=        " Take a walk on the right side
 
-" Right side : emulate `set ruler` 
-set statusline+=%#todo#   " Switch highlight 
+" Right side : emulate `set ruler`
+set statusline+=%#todo#   " Switch highlight
 set statusline+=%-15.(\ %l,%c%V%)  " Print line number, column numbers
-set statusline+=%*        " Switch hilight to normal 
-set statusline+=%P        " Print file percentage  
+set statusline+=%*        " Switch hilight to normal
+set statusline+=%P        " Print file percentage
 
 " 6. Colors
 " =========
@@ -157,6 +161,6 @@ set statusline+=%P        " Print file percentage
 " When you go dark you never go back
 set background=dark
 
-" Use a standard colorscheme that works everywhere.
+" Use a standard colorscheme that works everywhere
 colorscheme elflord
 
