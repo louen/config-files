@@ -4,7 +4,7 @@
 "                   louen -at- palouf.org
 " Uses the "minimal vimrc" as a base
 " It only uses standard features of vim to be portable
-" across platforms.
+" across platforms
 
 " Table of sections
 " =================
@@ -21,16 +21,16 @@
 " 1. Minimal vimrc
 " ================
 
-" This must be first, because it changes other options as a side effect.
+" This must be first, because it changes other options as a side effect
 set nocompatible
 
-" Make backspace behave in a sane manner.
+" Make backspace behave in a sane manner
 set backspace=indent,eol,start
 
 " Switch syntax highlighting on
 syntax on
 
-" Enable file type detection and do language-dependent indenting.
+" Enable file type detection and do language-dependent indenting
 filetype plugin indent on
 
 " Show line numbers
@@ -39,7 +39,7 @@ set number
 " Allow hidden buffers, don't limit to 1 file per window/split
 set hidden
 
-" Use visual bell (i.e. flash) instead of beeps.
+" Use visual bell (i.e. flash) instead of beeps
 set visualbell
 
 
@@ -68,7 +68,7 @@ endif
 
 " == Searching and regexps ==
 
-" Interpret some characters (like ^ and $ ) by default in regexp.
+" Interpret some characters (like ^ and $ ) by default in regexp
 set magic
 
 " Show matching delimiters when writing one ( [], {}, () )
@@ -104,7 +104,7 @@ set viminfo='20,<1000,s100
 " t = truncate file names
 " T = truncate long messages
 " o and O : only display the last message in write/read operations
-" I : don't display the intro message when starting vim without args.
+" I : don't display the intro message when starting vim without args
 set shortmess=atToOI
 
 
@@ -147,7 +147,7 @@ set smarttab
 " 4. Search
 " =========
 
-" Searches ignore case by default ...
+" Searches ignore case by default...
 set ignorecase
 
 " ... except if the pattern contains upper case caracters
@@ -155,7 +155,7 @@ set smartcase
 
 " Note : if you want to force the search to be case sensitive, use /foo\C
 
-" Highlight matches when searching. use :noh to turn it off after the search.
+" Highlight matches when searching. use :noh to turn it off after the search
 set hlsearch
 
 " Real-time display of the matched patterns while typing
