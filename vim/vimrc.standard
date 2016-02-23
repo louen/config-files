@@ -6,8 +6,8 @@
 " It only uses standard features of vim to be portable
 " across platforms. 
 
-"1. Minimal vimrc
-" ===============
+" 1. Minimal vimrc
+" ================
 
 " This must be first, because it changes other options as a side effect.
 set nocompatible
@@ -54,15 +54,38 @@ if has('mouse')
     set mouse=a
 endif
 
+" == Searching and regexps ==
+
+" Interpret some characters (like ^ and $ ) by default in regexp.
+set magic
+
 " Show matching delimiters when writing one ( [], {}, () )
 set showmatch
 
 " Hilight matching for 20ms (instead of 50)
 set matchtime=2
 
+" == Bottom line commands ==
+
+" Show suggestions when autocompleting with <tab>
+set wildmenu
+
 " Using autocomplete with <tab>, if there is an ambiguity,
 " we list all possible options and complete with the first
 set wildmode=list:full
+
+" Configure how many lines of history to remember
+set history=500
+
+" Configure the .viminfo file which keeps data about which
+" edited files, history, registers, etc
+" '50   = remember at most 50 files
+" <1000 = remember at most 1000 lines for each register
+" s100  = do not save registers more than 100 kB
+" no /  = save te search history
+" no h  = keep the last `hlsearch`
+" no %  = do not load the last files edited when invoking `vim`
+set viminfo='20,<1000,s100
 
 " Configure the messages printed at bottom line
 " a = all terse messages (e.g. [+] instead of [Modified]
@@ -72,12 +95,12 @@ set wildmode=list:full
 " I : don't display the intro message when starting vim without args.
 set shortmess=atToOI
 
-
 " 3. Text formatting 
 " ==================
 
 " Do not wrap long lines
 set nowrap
+set textwidth=0
 
 " == Tabs and indentation ==
 " Reference : http://tedlogan.com/techblog3.html
@@ -86,7 +109,7 @@ set nowrap
 " When adding a new line, it will keep the indentation level of the
 " current line
 set autoindent
-"
+
 " Some prefer real tabs and some prefer spaces
 " Here we use spaces only
 set expandtab
