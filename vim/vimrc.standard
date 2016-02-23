@@ -1,10 +1,22 @@
 " A tweaked vimrc for day to day editing
-" 
+"
 " Original Author : Valentin Roussellet
 "                   louen -at- palouf.org
 " Uses the "minimal vimrc" as a base
 " It only uses standard features of vim to be portable
-" across platforms. 
+" across platforms.
+
+" Table of sections
+" =================
+
+" Minimal vimrc :  starting point of this file
+" General VIM interface : base settings for VIM behaviour
+" Text Formatting : text input and formats
+" Search : behaviour of the search functions
+" Status line and informations : bottom lines configuration
+" Colors : configuration of fonts and text colors
+" Helper functions : functions used by mappings
+" Key mappings : re-mapping of the key strokes
 
 " 1. Minimal vimrc
 " ================
@@ -95,7 +107,8 @@ set viminfo='20,<1000,s100
 " I : don't display the intro message when starting vim without args.
 set shortmess=atToOI
 
-" 3. Text formatting 
+
+" 3. Text formatting
 " ==================
 
 " Do not wrap long lines
@@ -118,10 +131,10 @@ set expandtab
 "    The rest of the settings should work consistently
 
 " Number of columns an indentation level will be displayed as
-set tabstop=4 
+set tabstop=4
 
 " Number of spaces inserted when indenting ( >> )
-set shiftwidth=4 
+set shiftwidth=4
 
 " Number of spaces inserted when pressing tab
 " This is only useful if different from tabstop
@@ -166,7 +179,7 @@ set statusline+=[%{strlen(&fenc)?&fenc:'none'}] " File encoding
 set statusline+=%m        " [+] if file is modified, [-] if not modifiable
 set statusline+=%r        " [RO] if file is readonly
 set statusline+=%y        " File type in [ ]
-set statusline+=%#todo#   " Switch highlight and use one of the highlight groups 
+set statusline+=%#todo#   " Switch highlight and use one of the highlight groups
 set statusline+=%40.40(\ \ %<%F\ \ %) " File name, truncated left
 set statusline+=%*        " Switch hilight to normal
 
@@ -178,6 +191,7 @@ set statusline+=%-15.(\ %l,%c%V%)  " Print line number, column numbers
 set statusline+=%*        " Switch hilight to normal
 set statusline+=%P        " Print file percentage
 
+
 " 6. Colors
 " =========
 
@@ -186,4 +200,39 @@ set background=dark
 
 " Use a standard colorscheme that works everywhere
 colorscheme elflord
+
+
+" 7. Helper functions
+" ===================
+
+" This function toggles between absolute and relative
+" line numbering (very useful when moving across lines)
+function NumberToggle()
+    if(&relativenumber == 1)
+        set norelativenumber
+    else
+        set relativenumber
+    endif
+endfunc
+
+
+" This function removes trailing whitespace
+" It is pretty useful with autocmd BufWrite to avoid
+" garbage whitespace (e.g. in python)
+function DeleteTrailingWS()
+    exe "normal mz"
+    %s/\s\+$//ge
+    exe "normal `z"
+endfunc
+
+" 8. Key mappings
+" ===============
+
+" Use ctrl-n in normal mode to toggle numbers
+nnoremap <C-n> :call NumberToggle() <CR>
+
+" Use ctrl+space for auto completion like in most editors
+" Unfortunately some terminals send Ctrl+@ instead of Ctrl+Space
+inoremap <C-Space> <C-N>
+imap <C-@> <C-Space>
 
