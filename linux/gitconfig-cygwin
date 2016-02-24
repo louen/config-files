@@ -1,4 +1,4 @@
-#git config additions for cygwin
+# git config additions for cygwin
 # Meld.exe has to be in the path (or replace with full path)
 
 [core]
@@ -6,3 +6,6 @@
 
 [difftool "meld"]
     cmd = "Meld.exe $(cygpath -w $LOCAL) $(cygpath -w $REMOTE)"
+
+[mergetool "meld"]
+    cmd = "/cygdrive/c/HDD_Programs/Meld.exe --auto-merge $(cygpath -w $LOCAL) $(cygpath -w $MERGED) $(cygpath -w $REMOTE)"

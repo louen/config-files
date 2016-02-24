@@ -11,6 +11,9 @@
 	tool = meld
 	conflictstyle = diff3
 
+[mergetool]
+    prompt = false
+
 [credential]
 	helper = cache --timeout=86400
 
@@ -18,5 +21,6 @@
 	st = status
 	stat = status
 	lol = log --oneline --graph --decorate
+
 [push]
 	default = matching
