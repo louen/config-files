@@ -17,6 +17,7 @@
 " Colors : configuration of fonts and text colors
 " Helper functions : functions used by mappings
 " Key mappings : re-mapping of the key strokes
+" Bug fixes and workarounds : things that should not be there but are
 
 " 1. Minimal vimrc
 " ================
@@ -236,3 +237,10 @@ nnoremap <C-n> :call NumberToggle() <CR>
 inoremap <C-Space> <C-N>
 imap <C-@> <C-Space>
 
+
+" *. Bugfixes and workarounds
+" ============================
+
+" This prevents the "E303" error message on Windows machines
+" http://cfc.kizzx2.com/index.php/gvim-e303-unable-to-open-swap-file-for-no-name-recovery-impossible/
+set directory=.,$TEMP
