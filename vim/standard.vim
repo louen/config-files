@@ -238,6 +238,10 @@ inoremap <C-Space> <C-N>
 imap <C-@> <C-Space>
 
 
+" I don't use Ex mode when running vim interactively.
+nnoremap Q <nop>
+
+
 " *. Bugfixes and workarounds
 " ============================
 
