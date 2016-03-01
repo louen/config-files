@@ -2,7 +2,7 @@
 
 `vim` rules. Vim is useful everywhere but it needs configuration.
 Sometimes different configurations for different use cases.
-This is mainly a doc for me as I was building the perfect vimrc for me.
+This is mainly a doc for me as I was building the perfect vimrc.
 
 Note : `vim -u config_file` to force the use of a given config
 
@@ -59,6 +59,8 @@ and `softtabstop` consistent.
 ### Color schemes
 
 ## A good graphical editor
+
+I added a `gvimrc` file to configure when running graphical vim. 
 
 ## Compatibility across OS
 
