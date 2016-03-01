@@ -67,6 +67,9 @@ if has('mouse')
     set mouse=a
 endif
 
+" Display the title in the terminal window
+set title
+
 " == Searching and regexps ==
 
 " Interpret some characters (like ^ and $ ) by default in regexp
