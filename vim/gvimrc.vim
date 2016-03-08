@@ -19,3 +19,6 @@ elseif has("gui_win32")
     set guifont=Source\ Code\ Pro:h9:cANSI,Consolas:h10:cANSI
 endif
 
+" Use a more friendly (yet ubiquitous) scheme on gVim
+colorscheme desert
+
