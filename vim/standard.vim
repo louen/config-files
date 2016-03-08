@@ -209,6 +209,12 @@ set background=dark
 " Use a standard colorscheme that works everywhere
 colorscheme elflord
 
+" Display the current line
+set cursorline
+
+" I don't like the default underline for cursorline,
+" so I use bold instead
+hi CursorLine term=bold cterm=bold
 
 " 7. Helper functions
 " ===================
