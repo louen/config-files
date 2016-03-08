@@ -89,7 +89,7 @@ set wildmenu
 " Using autocomplete with <tab>, if there is an ambiguity,
 " we complete with the first (the options being listed in
 " wildmenu set above)
-set wildmode=full
+set wildmode=longest,full
 
 " Configure how many lines of history to remember
 set history=500
@@ -212,9 +212,8 @@ colorscheme elflord
 " Display the current line
 set cursorline
 
-" I don't like the default underline for cursorline,
-" so I use bold instead
-hi CursorLine term=bold cterm=bold
+" I don't like the default underline for cursorline
+hi CursorLine term=bold cterm=bold 
 
 " 7. Helper functions
 " ===================
