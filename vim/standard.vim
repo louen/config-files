@@ -87,8 +87,9 @@ set matchtime=2
 set wildmenu
 
 " Using autocomplete with <tab>, if there is an ambiguity,
-" we list all possible options and complete with the first
-set wildmode=list:full
+" we complete with the first (the options being listed in
+" wildmenu set above)
+set wildmode=full
 
 " Configure how many lines of history to remember
 set history=500
@@ -114,6 +115,9 @@ set shortmess=atToOI
 
 " 3. Text formatting
 " ==================
+
+" Use utf8 as default encoding
+set encoding=utf8
 
 " Do not wrap long lines
 set nowrap
@@ -183,14 +187,14 @@ set statusline+=[%{strlen(&fenc)?&fenc:'none'}] " File encoding
 set statusline+=%m        " [+] if file is modified, [-] if not modifiable
 set statusline+=%r        " [RO] if file is readonly
 set statusline+=%y        " File type in [ ]
-set statusline+=%#todo#   " Switch highlight and use one of the highlight groups
+set statusline+=%#visual# " Switch highlight and use one of the highlight groups
 set statusline+=%40.40(\ \ %<%F\ \ %) " File name, truncated left
 set statusline+=%*        " Switch hilight to normal
 
 set statusline+=%=        " Take a walk on the right side
 
 " Right side : emulate `set ruler`
-set statusline+=%#todo#   " Switch highlight
+set statusline+=%#visual# " Switch highlight
 set statusline+=%-15.(\ %l,%c%V%)  " Print line number, column numbers
 set statusline+=%*        " Switch hilight to normal
 set statusline+=%P        " Print file percentage
@@ -232,6 +236,17 @@ endfunc
 " 8. Key mappings
 " ===============
 
+" Start by defining the leader to ',' instead of '\'
+" which is not very convenient
+let mapleader=","
+
+
+" Use leader+/ to un-highlight searched items
+nnoremap <silent> <leader>/  :nohlsearch<CR>
+
+" Use leader+space to clean whitespace
+nnoremap <leader> <space> :call DeleteTrailingWS() <CR>
+
 " Use ctrl-n in normal mode to toggle numbers
 nnoremap <C-n> :call NumberToggle() <CR>
 
@@ -239,7 +254,6 @@ nnoremap <C-n> :call NumberToggle() <CR>
 " Unfortunately some terminals send Ctrl+@ instead of Ctrl+Space
 inoremap <C-Space> <C-N>
 imap <C-@> <C-Space>
-
 
 " I don't use Ex mode when running vim interactively.
 nnoremap Q <nop>
