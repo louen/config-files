@@ -213,7 +213,7 @@ colorscheme elflord
 set cursorline
 
 " I don't like the default underline for cursorline
-hi CursorLine term=bold cterm=bold 
+hi CursorLine term=bold cterm=bold
 
 " 7. Helper functions
 " ===================
@@ -250,10 +250,23 @@ let mapleader=","
 nnoremap <silent> <leader>/  :nohlsearch<CR>
 
 " Use leader+space to clean whitespace
-nnoremap <leader> <space> :call DeleteTrailingWS() <CR>
+nnoremap <leader><space> :call DeleteTrailingWS() <CR>
 
-" Use ctrl-n in normal mode to toggle numbers
+" Use Ctrl-N in normal mode to toggle numbers
 nnoremap <C-n> :call NumberToggle() <CR>
+
+" == Tabs shortcuts ==
+
+" Cycle tabs with leader Ctrl+tab
+nnoremap <leader><tab>   :tabnext<CR>
+nnoremap <leader><S-tab> :tabprevious<CR>
+
+" Create a new tab with leader Ctrl+T
+nnoremap <leader><C-t> :tabnew<CR>
+
+" Close a tab with leader Ctrl+W
+nnoremap <leader><C-w> :tabclose<CR>
+
 
 " Use ctrl+space for auto completion like in most editors
 " Unfortunately some terminals send Ctrl+@ instead of Ctrl+Space
