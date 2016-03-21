@@ -1,26 +1,30 @@
 [user]
-	email = [snip] 
-	name = Valentin Roussellet
+    email = [snip]
+    name = Valentin Roussellet
 [diff]
-	tool = meld
+    tool = meld
 
 [difftool]
-	prompt = false
+    prompt = false
 
 [merge]
-	tool = meld
-	conflictstyle = diff3
+    tool = meld
+    conflictstyle = diff3
 
 [mergetool]
     prompt = false
 
 [credential]
-	helper = cache --timeout=86400
+    helper = cache --timeout=86400
 
 [alias]
-	st = status
-	stat = status
-	lol = log --oneline --graph --decorate
+    st = status
+    stat = status
+    co = checkout
+    ci = commit
+    up = pull --rebase
+    lol = log --oneline --graph --decorate
+    lola = log --oneline --graph --decorate --branches
 
 [push]
-	default = matching
+    default = simple
