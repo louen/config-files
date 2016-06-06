@@ -6,9 +6,8 @@ This is mainly a doc for me as I was building the perfect vimrc.
 
 Note : `vim -u config_file` to force the use of a given config
 
-I will try to detail why each option is there, mostly as a way
-to remember it myself but who knows, it can be useful for 
-somebody else.
+Each option is throughrly commented. You can always use 
+`:h <option-name>` to access
 
 ## The minimal vimrc
 
@@ -22,51 +21,34 @@ a few tweaks of my own, which is in `vimrc.minimal`
 
 ## A good console editor
 
-Now my goal will be to make vim useable as my main editor in 
+Now my goal will be to make vim usable as my main editor in 
 a terminal, to edit files as a sysadmin or to make a quick
 fix in a program. So the configuration will need to be 
 simple and fast to load, with no frills, but still make
 it convenient to use. Also it will need to work with
 all kind of terminals. `vimrc.standard` 
 
-### General options
+Note that compatibility is only guaranteed with vim 7.4+.
 
-The first section changes the general behavior of vim.
+So far I tested my file in the following environments and terminals
+* Linux : Konsole, gnome-terminal, xterm, urxvt
+* Windows : cygwin terminal, puTTY
 
-The "fold column" adds a nice padding to the left and will 
-also be useful for foldings 
+### Maps summary
 
 
+#### Credits
 
-### Text formatting
-
-This section is fairly straightforward, most of it is concerned
-by tabs and indentation.
-
-In my file I chose to write spaces instead of real tabs, but
-this can easily be overriden, even on a file type basis (this
-is done automatically for Makefiles for example).
-
-The rest of the config here is about how many spaces a tab 
-is worth.
-Default is 8, but most modern editors use 4 (though some people
-prefer 2).
-The only caveat is to keep the `tabstop`, `shiftwidth` 
-and `softtabstop` consistent.
-
-### Status line
-
-### Color schemes
+I took inspiration from many other goods vimrc
+and vim documentation on github such as
+* `vim-sensible` by Tim Pope ( https://github.com/tpope/vim-sensible ) 
+*  Extra `vim-sensible` config by Adam Stankiewicz ( https://github.com/sheerun/vimrc )
+* `vim-galore` by Marco Hinz ( https://github.com/mhinz/vim-galore )
 
 ## A good graphical editor
 
-I added a `gvimrc` file to configure when running graphical vim. 
-
-## Compatibility across OS
-
-## A replacement for your IDE
+I added a `gvimrc` file to configure when running graphical vim.
+It contains only options for gvim, such as setting guioptions
+and fonts for gvim.
 
 
-## References
-
-https://github.com/mhinz/vim-galore

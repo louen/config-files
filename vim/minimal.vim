@@ -1,5 +1,5 @@
 " A minimal vimrc for new vim users to start with.
-" 
+"
 " References
 " http://www.benorenstein.com/blog/your-first-vimrc-should-be-nearly-empty/
 " https://gist.github.com/benmccormick/4e4bc44d8135cfc43fc3
@@ -8,8 +8,8 @@
 " Original Author:       Bram Moolenaar <Bram@vim.org>
 " Made more minimal by:  Ben Orenstein
 " Modified by :          Ben McCormick
-" Modified by :          Valentin Roussellet 
-" Last change:           2016 Jan 20 
+" Modified by :          Valentin Roussellet
+" Last change:           2016 Jan 20
 "
 " To use it, copy it to
 "  for Unix based systems (including OSX and Linux):  ~/.vimrc
@@ -34,6 +34,9 @@ set number
 
 " Allow hidden buffers, don't limit to 1 file per window/split
 set hidden
+
+" Disable error beeps
+set noerrorbells
 
 " Use visual bell (i.e. flash) instead of beeps
 set visualbell

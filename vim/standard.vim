@@ -12,7 +12,7 @@
 " Minimal vimrc :  starting point of this file
 " General VIM interface : base settings for VIM behaviour
 " Text Formatting : text input and formats
-" Search : behaviour of the search functions
+" Search and completion : behaviour of the search functions
 " Status line and informations : bottom lines configuration
 " Colors : configuration of fonts and text colors
 " Helper functions : functions used by mappings
@@ -40,6 +40,9 @@ set number
 " Allow hidden buffers, don't limit to 1 file per window/split
 set hidden
 
+" Disable error beeps
+set noerrorbells
+
 " Use visual bell (i.e. flash) instead of beeps
 set visualbell
 
@@ -47,10 +50,17 @@ set visualbell
 " 2. General VIM interface
 " ========================
 
+" Do not parse modelines. This feature is moderately useful to do
+" per-file configuration but is a huge security vulnerability
+set nomodeline
+
 " Keep lines visible above and below the cursor
 set scrolloff=2
 
-" Add an extra column of padding on the left side
+" Keep colums visible around the cursor
+set sidescrolloff=5
+
+" Add an extra column of padding  for folds on the left side
 set foldcolumn=1
 
 " Allow left and right arrows to go up or down one line when at one end
@@ -70,6 +80,10 @@ endif
 " Display the title in the terminal window
 set title
 
+" Open vertical splits on the right side
+set splitright
+
+
 " == Searching and regexps ==
 
 " Interpret some characters (like ^ and $ ) by default in regexp
@@ -81,10 +95,17 @@ set showmatch
 " Hilight matching for 20ms (instead of 50)
 set matchtime=2
 
+
 " == Bottom line commands ==
 
 " Show suggestions when autocompleting with <tab>
 set wildmenu
+
+" Files to ignore in the menu when looking for a file.
+set wildignore+=*.o,*.out,*.obj " C/C++ outputs
+set wildignore+=.git,.svn       " Version control system dirs
+set wildignore+=*.zip,*.tar,*tar.gz,*.tar.bz2,*.rar " Compressed dirs
+set wildignore+=*.swp,*~,._* "Swap and backup files
 
 " Using autocomplete with <tab>, if there is an ambiguity,
 " we complete with the first (the options being listed in
@@ -102,14 +123,15 @@ set history=500
 " no /  = save te search history
 " no h  = keep the last `hlsearch`
 " no %  = do not load the last files edited when invoking `vim`
-set viminfo='20,<1000,s100
+" !     = save uppercase variables in viminfo file
+set viminfo='20,<1000,s100,!
 
 " Configure the messages printed at bottom line
 " a = all terse messages (e.g. [+] instead of [Modified]
 " t = truncate file names
 " T = truncate long messages
-" o and O : only display the last message in write/read operations
-" I : don't display the intro message when starting vim without args
+" o and O = only display the last message in write/read operations
+" I = don't display the intro message when starting vim without args
 set shortmess=atToOI
 
 
@@ -122,6 +144,18 @@ set encoding=utf8
 " Do not wrap long lines
 set nowrap
 set textwidth=0
+
+" Display the last line as much as possible instead of '@'
+set display+=lastline
+
+" Do not consider numbers starting with 0 as octal (e.g for increment)
+set nrformats-=octal
+
+" Joining comment lines remove the leading comment signs
+set formatoptions+=j
+
+" Set default whitespace chars for 'set list'
+set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 
 " == Tabs and indentation ==
 " Reference : http://tedlogan.com/techblog3.html
@@ -152,8 +186,9 @@ set softtabstop=4
 " inserting tabs in text inserts spaces up to the next tabstop
 set smarttab
 
-" 4. Search
-" =========
+
+" 4. Search and completion
+" ========================
 
 " Searches ignore case by default...
 set ignorecase
@@ -168,6 +203,10 @@ set hlsearch
 
 " Real-time display of the matched patterns while typing
 set incsearch
+
+" Don't scan include files for completion (rely on .tags)
+" or external completer instead
+set complete-=i
 
 
 " 5. Status line and informations
@@ -241,6 +280,15 @@ endfunc
 " 8. Key mappings
 " ===============
 
+" Timeout for key sequences ( maps ) set to 1s
+set timeout
+set timeoutlen=1000
+
+" Timeout for key codes (e.g with <Esc>) set to 100ms
+set ttimeout
+set ttimeoutlen=100
+
+
 " Start by defining the leader to ',' instead of '\'
 " which is not very convenient
 let mapleader=","
@@ -276,6 +324,8 @@ imap <C-@> <C-Space>
 " I don't use Ex mode when running vim interactively.
 nnoremap Q <nop>
 
+" Use :H for opening help in a vsplit
+cnoreabbrev H vert h
 
 " *. Bugfixes and workarounds
 " ============================
