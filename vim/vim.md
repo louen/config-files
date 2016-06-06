@@ -7,7 +7,8 @@ This is mainly a doc for me as I was building the perfect vimrc.
 Note : `vim -u config_file` to force the use of a given config
 
 Each option is throughrly commented. You can always use 
-`:h <option-name>` to access
+`:h <option-name>` to access the matching section of the 
+vim documentation.
 
 ## The minimal vimrc
 
