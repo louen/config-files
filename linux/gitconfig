@@ -25,6 +25,8 @@
     up = pull --rebase
     lol = log --oneline --graph --decorate
     lola = log --oneline --graph --decorate --branches
+    d = diff
+    dt = difftool
 
 [push]
     default = simple
