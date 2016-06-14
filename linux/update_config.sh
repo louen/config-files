@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # update-config : update the configuration file 
-
+cd config-files/
+USER=louen
 # update repo
 git pull
 
