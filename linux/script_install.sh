@@ -40,10 +40,11 @@ echo "************************************"
 # Main config variables
 # which version of debian to install
 DISTRIB=jessie
+# Who is the main user
+USER=louen
 
 # The package file list 
 BASE_PACK_FILE=packages/base.list
-
 
 if [[ $UID != 0 ]] ; then
  echo "You must be root"
@@ -63,7 +64,7 @@ deb-src http://security.debian.org/ $DISTRIB/updates main contrib non-free">>/et
 echo "deb http://security.debian.org/ $DISTRIB-updates main contrib non-free
 deb-src http://security.debian.org/ $DISTRIB-updates main contrib non-free">>/etc/apt/sources.list
 # Non-debian repositories
-echo "deb http://linux.drop.com/debian $DISTRIB main>">/etc/apt/sources.list
+echo "deb http://linux.drop.com/debian $DISTRIB main>">>/etc/apt/sources.list
 
 # Updating package list
 apt update
@@ -72,18 +73,16 @@ echo -e '\E[1;33m Installing packages :\033[0m'
 echo -e '\E[1;33m $(cat $PACKAGES_FILE) \033[0m'
 
 # Installing usefull package
-echo y|apt-get install $(cat PACKAGES_FILE) 
+apt install -y $(cat PACKAGES_FILE) 
 
 # Getting configuration files
-cd /home/louen/config
-mv zlogin zlogout zshrc zshenv /etc/zsh/
-mv vimrc /etc/vim/
+git clone https://github.com/louen/config-files.git
+# TODO  : install config
 
 # Changing shell
 chsh -s `which zsh`
 
 # Configuring timezone
-# vservers use time reference from dom0
 # we just need to set the timezone
 echo -e '\E[1;33mConfiguring timezeone...\033[0m'
 UTC=`cat /etc/default/rcS | grep UTC | cut -d'=' -f2`
@@ -96,15 +95,13 @@ else
   echo "Please set your hardware clock to UTC"
 fi
 
-#Installing ssh
-echo -e '\E[1;33mInstalling and configuring ssh (PermitRootLogin No )...\033[0m'
-echo y|aptitude install ssh
-#We remove root login
+#We remove root login on ssh server
 sed 's/PermitRootLogin yes/PermitRootLogin no/' --in-place=.original /etc/ssh/sshd_config
 
-update-alternatives --display pager | grep -e 'bin.*priority' | grep -n most | cut -d':' -f1 | update-alternatives --config pager
+echo -e '\E[1;33mconfiguring default shell,pager...\033[0m'
 
-echo -e '\E[1;33mconfiguring pager, locales...\033[0m'
+# update-alternatives : pager
+update-alternatives --display pager | grep -e 'bin.*priority' | grep -n most | cut -d':' -f1 | update-alternatives --config pager
 
 sed -i -e 's/bash/zsh/' /etc/adduser.conf
 touch /etc/skel/.zshrc
