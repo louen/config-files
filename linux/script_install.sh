@@ -71,8 +71,8 @@ fi
 
 rm -f /etc/apt-get/sources.list
 # main repository
-echo "deb http://debian.via.ecp.fr/debian/ $DISTRIB main non-free contrib
-deb-src http://debian.via.ecp.fr/debian/ $DISTRIB main non-free contrib">/etc/apt-get/sources.list
+echo "deb http://ftp.fr.debian.org/debian/ $DISTRIB main non-free contrib
+deb-src http://ftp.fr.debian.org/debian/ $DISTRIB main non-free contrib">/etc/apt-get/sources.list
 # updates
 echo "deb http://security.debian.org/ $DISTRIB/updates main contrib non-free
 deb-src http://security.debian.org/ $DISTRIB/updates main contrib non-free">>/etc/apt-get/sources.list
@@ -80,7 +80,7 @@ deb-src http://security.debian.org/ $DISTRIB/updates main contrib non-free">>/et
 echo "deb http://security.debian.org/ $DISTRIB-updates main contrib non-free
 deb-src http://security.debian.org/ $DISTRIB-updates main contrib non-free">>/etc/apt-get/sources.list
 # Non-debian repositories
-echo "deb http://linux.drop.com/debian $DISTRIB main>">>/etc/apt-get/sources.list
+echo "deb http://linux.dropbox.com/debian $DISTRIB main>">>/etc/apt-get/sources.list
 
 # Step 2 : installing base packages
 ###################################
