@@ -42,7 +42,7 @@ echo "************************************"
 DISTRIB=jessie
 
 # The package file list 
-PACKAGES_FILE=packages.list
+BASE_PACK_FILE=packages/base.list
 
 
 if [[ $UID != 0 ]] ; then
@@ -53,13 +53,20 @@ fi
 # Write to sources.list
 
 rm -f /etc/apt/sources.list
+# main repository
 echo "deb http://debian.via.ecp.fr/debian/ $DISTRIB main non-free contrib
 deb-src http://debian.via.ecp.fr/debian/ $DISTRIB main non-free contrib">/etc/apt/sources.list
+# updates
 echo "deb http://security.debian.org/ $DISTRIB/updates main contrib non-free
 deb-src http://security.debian.org/ $DISTRIB/updates main contrib non-free">>/etc/apt/sources.list
+# Volatile
+echo "deb http://security.debian.org/ $DISTRIB-updates main contrib non-free
+deb-src http://security.debian.org/ $DISTRIB-updates main contrib non-free">>/etc/apt/sources.list
+# Non-debian repositories
+echo "deb http://linux.drop.com/debian $DISTRIB main>">/etc/apt/sources.list
 
 # Updating package list
-apt-get update
+apt update
 
 echo -e '\E[1;33m Installing packages :\033[0m'
 echo -e '\E[1;33m $(cat $PACKAGES_FILE) \033[0m'
