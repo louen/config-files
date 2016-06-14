@@ -51,36 +51,70 @@ if [[ $UID != 0 ]] ; then
  exit 1
 fi
 
-# Write to sources.list
+# Step 1 : Write to sources.list
+################################
 
-rm -f /etc/apt/sources.list
+rm -f /etc/apt-get/sources.list
 # main repository
 echo "deb http://debian.via.ecp.fr/debian/ $DISTRIB main non-free contrib
-deb-src http://debian.via.ecp.fr/debian/ $DISTRIB main non-free contrib">/etc/apt/sources.list
+deb-src http://debian.via.ecp.fr/debian/ $DISTRIB main non-free contrib">/etc/apt-get/sources.list
 # updates
 echo "deb http://security.debian.org/ $DISTRIB/updates main contrib non-free
-deb-src http://security.debian.org/ $DISTRIB/updates main contrib non-free">>/etc/apt/sources.list
+deb-src http://security.debian.org/ $DISTRIB/updates main contrib non-free">>/etc/apt-get/sources.list
 # Volatile
 echo "deb http://security.debian.org/ $DISTRIB-updates main contrib non-free
-deb-src http://security.debian.org/ $DISTRIB-updates main contrib non-free">>/etc/apt/sources.list
+deb-src http://security.debian.org/ $DISTRIB-updates main contrib non-free">>/etc/apt-get/sources.list
 # Non-debian repositories
-echo "deb http://linux.drop.com/debian $DISTRIB main>">>/etc/apt/sources.list
+echo "deb http://linux.drop.com/debian $DISTRIB main>">>/etc/apt-get/sources.list
 
+# Step 2 : installing base packages
+###################################
+
+echo -e '\E[1;33m Installing base packages \033[0m'
 # Updating package list
-apt update
+apt-get update
 
-echo -e '\E[1;33m Installing packages :\033[0m'
-echo -e '\E[1;33m $(cat $PACKAGES_FILE) \033[0m'
+# Installing packages
+apt-get install -y $PACKAGES_BASE 
 
-# Installing usefull package
-apt install -y $(cat PACKAGES_FILE) 
+# Configuration of base packages
 
+# Changing shell
+echo -e '\E[1;33m Changing shell to zsh \033[0m'
+chsh -s `which zsh`
+chsh -s `which zsh` $USER
+
+# update-alternatives : pager, 
+update-alternatives --display pager | grep -e 'bin.*priority' | grep -n most | cut -d':' -f1 | update-alternatives --config pager
+
+sed -i -e 's/bash/zsh/' /etc/adduser.conf
+touch /etc/skel/.zshrc
+# We remove root login on ssh server
+sed 's/PermitRootLogin yes/PermitRootLogin no/' --in-place=.original /etc/ssh/sshd_config
+
+# Step 3 : installing extra packages and graphical system
+#########################################################
+
+echo -e '\E[1;33m Installing sysadmin packages \033[0m'
+apt-get install -y $PACKAGES_ADMIN
+
+echo -e '\E[1;33m Installing dev packages \033[0m'
+apt-get install -y $PACKAGES_DEV
+
+echo -e '\E[1;33m Installing i3 graphical desktop \033[0m'
+apt-get install -y $PACKAGES_DE
+
+# Step 4 : Custom configuration
+###############################
+
+echo -e '\E[1;33m Installing custom configuration \033[0m'
 # Getting configuration files
 git clone https://github.com/louen/config-files.git
 # TODO  : install config
 
-# Changing shell
-chsh -s `which zsh`
+./config-files/linux/update_config.sh
+
+
 
 # Configuring timezone
 # we just need to set the timezone
@@ -95,14 +129,27 @@ else
   echo "Please set your hardware clock to UTC"
 fi
 
-#We remove root login on ssh server
-sed 's/PermitRootLogin yes/PermitRootLogin no/' --in-place=.original /etc/ssh/sshd_config
 
-echo -e '\E[1;33mconfiguring default shell,pager...\033[0m'
+echo -e '\E[1;33m Configuring defaults and alternatives \033[0m'
 
-# update-alternatives : pager
-update-alternatives --display pager | grep -e 'bin.*priority' | grep -n most | cut -d':' -f1 | update-alternatives --config pager
 
-sed -i -e 's/bash/zsh/' /etc/adduser.conf
-touch /etc/skel/.zshrc
+# 
+
+# skype install
+# https://wiki.debian.org/skype
+echo -e '\E[1;33m Installing skype \033[0m'
+dpkg --add-architecture i386
+apt-get update
+wget -O skype-install.deb http://www.skype.com/go/getskype-linux-deb
+dpkg -i skype-install.deb
+apt-get -f install
+
+echo -e '\E[1;33m Updating remaining packages \033[0m'
+apt-get upgrade -y
+apt-get autoclean -y
+apt-get autoremove -y
+
+echo -e '\E[1;33m Finished. \033[0m'
+exit 0
+
 
