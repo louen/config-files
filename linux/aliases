@@ -2,6 +2,7 @@
 
 # Aliases file for bash-like terminals.
 # The shebang is mostly for syntax highlight to work in vim.
+# store as .aliases in home dir
 
 # [1] General commands
 ######################
