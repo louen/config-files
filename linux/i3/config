@@ -173,8 +173,6 @@ bindsym $mod+Shift+Tab workspace prev
 # Use Alt + Tab for cycling though windows of a workspace
 bindsym Mod1+Tab exec /bin/bash ~/.i3/focus_next.sh
 
-
-
 # Autostart commands
 
 # use ie keymap to have é and use right ctrl as compose key
