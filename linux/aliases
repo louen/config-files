@@ -50,6 +50,12 @@ alias man='LANG=C man'
 # [2]  Sysadmin corner
 ######################
 
+# Check if the very useful package "thefuck" is installed and configure
+# the alias. see https://github.com/nvbn/thefuck#manual-installation
+if [  -f /usr/bin/thefuck ]; then
+	eval $(thefuck --alias)
+fi
+
 # Upgrade shortcut
 alias upgrade='apt-get update && apt-get upgrade  '
 alias distupgrade='apt-get update && apt-get dist-upgrade  '
