@@ -161,8 +161,8 @@ assign [class="Firefox"] 2
 assign [class="Skype"] 3
 
 # Assign function keys their correct command
-bindsym XF86MonBrightnessDown exec /usr/bin/xbacklight -dec 10
-bindsym XF86MonBrightnessUp   exec /usr/bin/xbacklight -inc 10
+bindsym XF86MonBrightnessDown exec /usr/local/bin/brightness -10
+bindsym XF86MonBrightnessUp   exec /usr/local/bin/brightness +10
 bindsym XF86AudioLowerVolume exec /usr/bin/pactl set-sink-volume 0 -10%
 bindsym XF86AudioRaiseVolume exec /usr/bin/pactl set-sink-volume 0 +10%
 
@@ -186,5 +186,3 @@ exec /bin/sh ~/.fehbg
 exec --no-startup-id wicd-client -t
 # dropbox
 exec dropbox start
-# gmail-checker
-exec checkgmail
