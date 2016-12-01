@@ -56,10 +56,12 @@ if [  -f /usr/bin/thefuck ]; then
 	eval $(thefuck --alias)
 fi
 
+
 # Upgrade shortcut
 alias upgrade='apt-get update && apt-get upgrade  '
 alias distupgrade='apt-get update && apt-get dist-upgrade  '
 alias ug="upgrade"
+alias clean="apt-get autoclean && apt-get autoremove"
 
 # Apache 2
 alias a2reload="/etc/init.d/apache2 reload"
@@ -72,6 +74,10 @@ alias a2restart="/etc/init.d/apache2 restart"
 alias cmaked="cmake $1 -DCMAKE_BUILD_TYPE=Debug"
 alias cmaker="cmake $1 -DCMAKE_BUILD_TYPE=Release"
 
+# One letter aliases
+alias g="git"
+alias v="vim"
+alias gv="gvim"
 
 # Add an "alert command" to wake you up after running a long command
 # Example usage: sleep 100; alert
