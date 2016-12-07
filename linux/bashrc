@@ -114,3 +114,18 @@ if [ -t 0 ]; then
 	bind '"\C-w": backward-kill-word'
 fi
 
+bind "set bell-style none"
+
+# Use dir colors
+if [ -x /usr/bin/dircolors ]
+then
+  if [ -r ~/.dir_colors ]
+  then
+    eval "`dircolors -b ~/.dir_colors`"
+  elif [ -r /etc/dir_colors ]
+  then
+    eval "`dircolors -b /etc/dir_colors`"
+  else
+    eval "`dircolors -b`"
+  fi
+fi

@@ -45,6 +45,8 @@ and vim documentation on github such as
 * `vim-sensible` by Tim Pope ( https://github.com/tpope/vim-sensible ) 
 *  Extra `vim-sensible` config by Adam Stankiewicz ( https://github.com/sheerun/vimrc )
 * `vim-galore` by Marco Hinz ( https://github.com/mhinz/vim-galore )
+* `vim-bootstrap` ( http://vim-bootstrap.com )
+* Vim on ZEEF by Patrick Schanen : ( https://vim.zeef.com/patrick.schanen )
 
 ## A good graphical editor
 

@@ -303,6 +303,11 @@ nnoremap <leader><space> :call DeleteTrailingWS() <CR>
 " Use Ctrl-N in normal mode to toggle numbers
 nnoremap <C-n> :call NumberToggle() <CR>
 
+" Use ctrl+space for auto completion like in most editors
+" Unfortunately some terminals send Ctrl+@ instead of Ctrl+Space
+inoremap <C-Space> <C-N>
+imap <C-@> <C-Space>
+
 " == Tabs shortcuts ==
 
 " Cycle tabs with leader Ctrl+tab
@@ -315,17 +320,51 @@ nnoremap <leader><C-t> :tabnew<CR>
 " Close a tab with leader Ctrl+W
 nnoremap <leader><C-w> :tabclose<CR>
 
+" == Splits shortcuts ==
 
-" Use ctrl+space for auto completion like in most editors
-" Unfortunately some terminals send Ctrl+@ instead of Ctrl+Space
-inoremap <C-Space> <C-N>
-imap <C-@> <C-Space>
+" Map H and V to split and vsplit
+nnoremap<leader>h :<C-u>split<CR>
+nnoremap<leader>v :<C-u>vsplit<CR>
+
+" == Buffer shortcuts ==
+
+" Use Q and W to cycle buffers
+nnoremap <leader>q :bprevious<CR>
+nnoremap <leader>w :bnext<CR>
+
+" == Window shortcuts
+
+" Move windows with ctrl + hjkl
+"nnoremap <C-h><C-w>h
+"nnoremap <C-j><C-w>j
+"nnoremap <C-k><C-w>k
+"nnoremap <C-l><C-w>l
+
+" == Other maps ==
+
+" Keep visual mode after indenting with > or <
+vmap < <gv
+vmap > >gv
 
 " I don't use Ex mode when running vim interactively.
 nnoremap Q <nop>
 
+" == Abbrevs ==
+
 " Use :H for opening help in a vsplit
 cnoreabbrev H vert h
+
+" Remap common caps typos to their correct versions
+cnoreabbrev W! w!
+cnoreabbrev Q! q!
+cnoreabbrev Qall! qall!
+cnoreabbrev Wq wq
+cnoreabbrev Wa wa
+cnoreabbrev wQ wq
+cnoreabbrev WQ wq
+cnoreabbrev W w
+cnoreabbrev Q q
+cnoreabbrev Qall qall
 
 " *. Bugfixes and workarounds
 " ============================
