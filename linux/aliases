@@ -50,6 +50,9 @@ alias man='LANG=C man'
 # [2]  Sysadmin corner
 ######################
 
+# Use the more secure su that resets environment
+alias su="su - "
+
 # Check if the very useful package "thefuck" is installed and configure
 # the alias. see https://github.com/nvbn/thefuck#manual-installation
 if [  -f /usr/bin/thefuck ]; then
@@ -58,10 +61,10 @@ fi
 
 
 # Upgrade shortcut
-alias upgrade='apt-get update && apt-get upgrade  '
-alias distupgrade='apt-get update && apt-get dist-upgrade  '
+alias upgrade='apt update && apt upgrade  '
+alias distupgrade='apt update && apt dist-upgrade  '
 alias ug="upgrade"
-alias clean="apt-get autoclean && apt-get autoremove"
+alias clean="apt autoclean && apt autoremove"
 
 # Apache 2
 alias a2reload="/etc/init.d/apache2 reload"
