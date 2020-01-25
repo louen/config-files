@@ -4,45 +4,71 @@
 # The shebang is mostly for syntax highlight to work in vim.
 # store as .aliases in home dir
 
+# [0] Platform-independance layer
+#################################
+
+uname_output="$(uname -s)"
+case ${uname_output} in
+    Linux*)     os=LINUX;;
+    Darwin*)    os=MAC;;
+    CYGWIN*)    os=CYGWIN;;
+    MINGW*)     os=MINGW;;
+    *)          os=UNKNOWN;;
+esac
+
 # [1] General commands
 ######################
 
-# Enable color if dir-colors are here
+if [ "$os" != "MAC" ]; then # On Linux we use the fully named options
+
+    alias ls='ls --classify --tabsize=0 --literal --show-control-chars --human-readable'
+
+    # Default commands use "human-readable" mode for sizes
+    alias df='df --human-readable'
+
+    alias du='du --human-readable'
+
+    # Force commands to ask confirmation to avoid overwriting a file
+    alias rm="rm --interactive"
+    alias cp="cp --interactive"
+    alias mv="mv --interactive"
+
+else # On Mac OS we use the BSD-style short options
+
+    alias ls='ls -G -F -w -hr'
+
+    alias df='df -h'
+    alias du='du -h'
+
+    alias rm='rm -i'
+    alias cp='cp -i'
+    alias mv='mv -i'
+fi
+
+# Enable color on ls if dir-colors are here
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto --classify --tabsize=0 --literal --show-control-chars --human-readable'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
-
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-else
-    # No colors for ls but still the other options
-    alias ls='ls --classify --tabsize=0 --literal --show-control-chars --human-readable'
+    alias ls='ls --color=auto'
+    alias dir='dir --color=auto'
+    alias vdir='vdir --color=auto'
 fi
 
 
 # Shortcuts for ls
 alias la='ls -A'    # list everything (inlc. hidden files) except . and ..
-alias ll='ls -lh'   # long list with human readable sizes
-alias lla='ls -lAh' # list all with long format
+alias ll='ls -l'   # long list with human readable sizes
+alias lla='ls -lA' # list all with long format
 alias lr='ls -R'    # recursive list
-alias llr='ls -lRh' # recursive list with long format
+alias llr='ls -lR' # recursive list with long format
+
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
 
 # Directories management
 alias md='mkdir'
 alias rd='rmdir'
 alias s='cd ..'
-
-# Default commands use "human-readable" mode for sizes
-alias df='df --human-readable'
-alias du='du --human-readable'
-
-# Force commands to ask confirmation to avoid overwriting a file
-alias rm="rm --interactive"
-alias cp="cp --interactive"
-alias mv="mv --interactive"
 
 # Force english manuals
 alias man='LANG=C man'
@@ -86,3 +112,8 @@ alias gv="gvim"
 # Example usage: sleep 100; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|    tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
+# [9] Cleanup
+#############
+
+unset os
+unset uname_output
