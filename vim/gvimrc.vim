@@ -17,6 +17,9 @@ if has("gui_gtk2")
     set guifont=Source\ Code\ Pro\ 10,DejaVu\ Sans\ Mono\ 10
 elseif has("gui_win32")
     set guifont=Source\ Code\ Pro:h9:cANSI,Consolas:h10:cANSI
+elseif has("gui_macvim")
+    set macligatures
+    set guifont=Fira\ Code:h14,Monaco:h14
 endif
 
 " Use a more friendly (yet ubiquitous) scheme on gVim
