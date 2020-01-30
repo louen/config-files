@@ -198,3 +198,10 @@ fi
 if [ -f ~/.aliases ]; then
     . ~/.aliases
 fi
+
+
+if [ -f ~/.zshrc.local ]; then
+    . ~/.zshrc.local
+fi
+
+
