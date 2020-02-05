@@ -10,16 +10,14 @@ set guioptions-=l " No left scrollbar
 set guioptions-=L " No left scrollbar
 
 
-" I use Source Code Pro as my default font for gVim
-" with a fallback font which is usually there on default
-" installs : Consolas for Windows and DejaVu for Linux.
 if has("gui_gtk2")
     set guifont=Source\ Code\ Pro\ 10,DejaVu\ Sans\ Mono\ 10
 elseif has("gui_win32")
     set guifont=Source\ Code\ Pro:h9:cANSI,Consolas:h10:cANSI
 elseif has("gui_macvim")
-    set macligatures
-    set guifont=Fira\ Code:h14,Monaco:h14
+    set macligatures    " Enable ligatures for Fira Code
+    set guifont=Fira\ Code:h14,Monaco:h14   
+    aunmenu TouchBar    " Disable the fullscreen button on tthe macbook touchbar
 endif
 
 " Use a more friendly (yet ubiquitous) scheme on gVim
