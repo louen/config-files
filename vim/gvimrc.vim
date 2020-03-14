@@ -17,7 +17,8 @@ elseif has("gui_win32")
 elseif has("gui_macvim")
     set macligatures    " Enable ligatures for Fira Code
     set guifont=Fira\ Code:h14,Monaco:h14   
-    aunmenu TouchBar    " Disable the fullscreen button on tthe macbook touchbar
+    " Disable the fullscreen button on tthe macbook touchbar
+    aunmenu TouchBar
 endif
 
 " Use a more friendly (yet ubiquitous) scheme on gVim
