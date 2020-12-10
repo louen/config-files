@@ -81,20 +81,28 @@ alias su="su - "
 
 # Check if the very useful package "thefuck" is installed and configure
 # the alias. see https://github.com/nvbn/thefuck#manual-installation
-if [  -f /usr/bin/thefuck ]; then
+if which thefuck > /dev/null; then
 	eval $(thefuck --alias)
 fi
 
+# Upgrade shortcuts
 
-# Upgrade shortcut
-alias upgrade='apt update && apt upgrade  '
-alias distupgrade='apt update && apt dist-upgrade  '
-alias ug="upgrade"
-alias clean="apt autoclean && apt autoremove"
+if [ "$os" != "MAC" ]; then # On Linux we use apt to upgrade
+    alias upgrade="apt update && apt upgrade"
+    alias distupgrade="apt update && apt dist-upgrade"
+    alias ug="upgrade"
+    alias clean="apt autoclean && apt autoremove"
 
-# Apache 2
-alias a2reload="/etc/init.d/apache2 reload"
-alias a2restart="/etc/init.d/apache2 restart"
+    # Apache 2
+    alias a2reload="/etc/init.d/apache2 reload"
+    alias a2restart="/etc/init.d/apache2 restart"
+
+else # On macOS we use brew to upgrade
+    alias upgrade="brew update && brew upgrade"
+    alias distupgrade="upgrade"
+    alias ug="upgrade"
+    alias clean="brew cleanup"
+fi
 
 # [3] Dev corner
 ################
