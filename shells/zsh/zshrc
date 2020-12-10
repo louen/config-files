@@ -33,7 +33,7 @@ then
 fi
 
 # xterm
-if [ "$TERM" = "xterm" ]
+if [ "$TERM" = "xterm" -o "xterm-256color" ]
 then
   bindkey '[H'  beginning-of-line       # Home
   bindkey '[F'  end-of-line             # End
@@ -45,6 +45,7 @@ then
   bindkey 'OH'  beginning-of-line       # Home
   bindkey 'OF'  end-of-line             # End
 fi
+
 
 # window title
 case $TERM in
@@ -199,9 +200,10 @@ if [ -f ~/.aliases ]; then
     . ~/.aliases
 fi
 
+#####################
+# 6. Local settings #
+#####################
 
 if [ -f ~/.zshrc.local ]; then
     . ~/.zshrc.local
 fi
-
-
