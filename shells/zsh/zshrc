@@ -191,25 +191,17 @@ compinit
 # 5. Aliases  #
 ###############
 
-# System-wide aliases
 if [ -f /etc/zsh/aliases ]; then
     . /etc/zsh/aliases
 fi
 
-# Local aliases
 if [ -f ~/.aliases ]; then
     . ~/.aliases
 fi
 
-# If `thefuck` is installed, run its init script
-if which fuck > /dev/null; then
-    eval $(thefuck --alias)
-fi
-
-###################
-# 6. Local config #
-###################
 
 if [ -f ~/.zshrc.local ]; then
     . ~/.zshrc.local
 fi
+
+
