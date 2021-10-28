@@ -29,6 +29,7 @@ brew install --cask firefox
 brew install --cask vlc
 brew install --cask htop
 brew install --cask rectangle
+brew install thefuck
 
 echo "Installing text editors : vscode / macvim"
 brew install --cask visual-studio-code

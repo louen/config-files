@@ -4,8 +4,6 @@ set -e
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 
-# install vimrc
-
 for file in zlogin zshenv zshrc zlogout
 do
     rm -f $HOME/.$file
