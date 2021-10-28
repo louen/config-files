@@ -17,12 +17,18 @@ bindkey '[2~' overwrite-mode          # Insert
 bindkey '[5~' history-search-backward # PgUp
 bindkey '[6~' history-search-forward  # PgDn
 
-# Our prompt will display the time, user name in red (or blue if root),
-# the hostname  and the current directory
+# Our prompt will display 
+# time [ %D{date format} ] in cyan
+# user name [%n] in red (or blue if root)
+# '@' (in yellow)
+# hostname [%m] in white
+# the current directory (with home as ~) [%~] in green
+# The prompt symbol [%#] (displays % or #) in yellow 
+
 if [ "`id -u`" -eq 0 ]; then
-  export PS1="%{[36;1m%}%T %{[34m%}%n%{[33m%}@%{[37m%}%m %{[32m%}%~%{[33m%}%#%{[0m%} "
+  export PS1="%{[36;1m%}%D{%H:%m} %{[34m%}%n%{[33m%}@%{[37m%}%m %{[32m%}%~%{[33m%}%#%{[0m%} "
 else
-  export PS1="%{[36;1m%}%T %{[31m%}%n%{[33m%}@%{[37m%}%m %{[32m%}%~%{[33m%}%#%{[0m%} "
+  export PS1="%{[36;1m%}%D{%H:%m} %{[31m%}%n%{[33m%}@%{[37m%}%m %{[32m%}%~%{[33m%}%#%{[0m%} "
 fi
 
 # Key bindings for specific terms
