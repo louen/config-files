@@ -13,6 +13,7 @@
 
 [mergetool]
     prompt = false
+    keepBackup = false
 
 [credential]
     helper = cache --timeout=86400
@@ -27,6 +28,12 @@
     lola = log --oneline --graph --decorate --branches
     d = diff
     dt = difftool
+    weekly = "!me=$(git config --get user.email); git log --author=$me --since=\"8 days ago\" --oneline"
 
 [push]
     default = simple
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
