@@ -145,6 +145,9 @@ set encoding=utf8
 set nowrap
 set textwidth=0
 
+" If wrapping, break at spaces and not mid-word
+set linebreak
+
 " Display the last line as much as possible instead of '@'
 set display+=lastline
 
