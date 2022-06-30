@@ -178,6 +178,9 @@ set tabstop=4
 " Number of spaces inserted when indenting ( >> )
 set shiftwidth=4
 
+" Always indent to the nearest multiple of `shiftwidth`
+set shiftround
+
 " Number of spaces inserted when pressing tab
 " This is only useful if different from tabstop
 set softtabstop=4
@@ -246,7 +249,7 @@ set statusline+=%P        " Print file percentage
 set background=dark
 
 " Use a standard colorscheme that works everywhere
-colorscheme elflord
+colorscheme desert
 
 " Display the current line
 set cursorline
