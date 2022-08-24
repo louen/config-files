@@ -59,6 +59,9 @@ setopt prompt_subst
 zstyle ':vcs_info:*' enable git
 precmd () { vcs_info }
 
+# Uncomment this to debug the hooks
+#zstyle ':vcs_info:*+*:*' debug true
+
 # Enable checking for (un)staged changes, enabling use of %u and %c
 zstyle ':vcs_info:*' check-for-changes true
 # Set custom strings for an unstaged vcs repo changes (*) and staged changes (+)
@@ -77,6 +80,43 @@ zstyle ':vcs_info:git:*' formats       '[%F{magenta}%B%b%%b%f|%u%c] '
 # Same setup as format with the additionnal action name [%a] and the extra info [%m]
 zstyle ':vcs_info:git:*' actionformats '[%F{magenta}%B%b%%b%f|%B%F{cyan}%a%f%%b%m%f%u%c] '
 
+zstyle ':vcs_info:git*+set-message:*' hooks git-untracked git-st git-detached-head
+
+
+# Show marker if there are untracked files in repository
+function +vi-git-untracked(){
+    if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]] && \
+        git status --porcelain | grep -q '^?? ' 2> /dev/null ; then
+        hook_com[staged]+='T'
+    fi
+}
+# Add +x /-x when local branch is ahead / behid remote branch
+function +vi-git-st() {
+    local ahead behind
+    local -a gitstatus
+
+    # Exit early in case the worktree is on a detached HEAD
+    git rev-parse ${hook_com[branch]}@{upstream} >/dev/null 2>&1 || return 0
+
+    local -a ahead_and_behind=(
+        $(git rev-list --left-right --count HEAD...${hook_com[branch]}@{upstream} 2>/dev/null)
+    )
+
+    ahead=${ahead_and_behind[1]}
+    behind=${ahead_and_behind[2]}
+
+    (( $ahead )) && gitstatus+=( " +${ahead}" )
+    (( $behind )) && gitstatus+=( " -${behind}" )
+
+    hook_com[staged]+=${(j:/:)gitstatus}
+}
+
+# Show commit hash in 'detached head' instead of a random branch name
+function +vi-git-detached-head() {
+if [[ -z "$(git symbolic-ref -q HEAD)" ]]; then
+    hook_com[branch]=":$(git rev-parse --short HEAD)"
+fi
+}
 
 # Configure the main prompt
 
@@ -249,4 +289,3 @@ fi
 if [ -f ~/.zshrc.local ]; then
     . ~/.zshrc.local
 fi
-
