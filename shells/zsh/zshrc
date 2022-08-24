@@ -20,33 +20,33 @@ bindkey '[6~' history-search-forward  # PgDn
 # Key bindings for specific terms
 if [ "$TERM" = "linux" -o "$TERM" = "screen" -o "$TERM" = "rxvt" ]
 then
-  bindkey '[1~' beginning-of-line       # Home
-  bindkey '[4~' end-of-line             # End
+    bindkey '[1~' beginning-of-line       # Home
+    bindkey '[4~' end-of-line             # End
 fi
 
 # xterm
 if [ "$TERM" = "xterm" -o "xterm-256color" ]
 then
-  bindkey '[H'  beginning-of-line       # Home
-  bindkey '[F'  end-of-line             # End
+    bindkey '[H'  beginning-of-line       # Home
+    bindkey '[F'  end-of-line             # End
 fi
 
 # gnome-terminal
 if [ "$COLORTERM" = "gnome-terminal" ]
 then
-  bindkey 'OH'  beginning-of-line       # Home
-  bindkey 'OF'  end-of-line             # End
+    bindkey 'OH'  beginning-of-line       # Home
+    bindkey 'OF'  end-of-line             # End
 fi
 
 
 # window title
 case $TERM in
-   xterm*)
-       precmd () {print -Pn "\e]0;%n@%m: %~\a"}
-       ;;
-   *rxvt)
-       precmd () {print -Pn "\e]0;%n@%m: %~\a"}
-       ;;
+    xterm*)
+        precmd () {print -Pn "\e]0;%n@%m: %~\a"}
+        ;;
+    *rxvt)
+        precmd () {print -Pn "\e]0;%n@%m: %~\a"}
+        ;;
 esac
 
 ######################################
@@ -85,30 +85,30 @@ zstyle ':vcs_info:git*+set-message:*' hooks git-untracked git-st git-detached-he
 
 # Show marker if there are untracked files in repository
 function +vi-git-untracked(){
-    if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]] && \
-        git status --porcelain | grep -q '^?? ' 2> /dev/null ; then
-        hook_com[staged]+='…'
-    fi
+if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]] && \
+    git status --porcelain | grep -q '^?? ' 2> /dev/null ; then
+    hook_com[staged]+='…'
+fi
 }
 # Add +x /-x when local branch is ahead / behid remote branch
 function +vi-git-st() {
-    local ahead behind
-    local -a gitstatus
+local ahead behind
+local -a gitstatus
 
     # Exit early in case the worktree is on a detached HEAD
     git rev-parse ${hook_com[branch]}@{upstream} >/dev/null 2>&1 || return 0
 
     local -a ahead_and_behind=(
-        $(git rev-list --left-right --count HEAD...${hook_com[branch]}@{upstream} 2>/dev/null)
-    )
+    $(git rev-list --left-right --count HEAD...${hook_com[branch]}@{upstream} 2>/dev/null)
+)
 
-    ahead=${ahead_and_behind[1]}
-    behind=${ahead_and_behind[2]}
+ahead=${ahead_and_behind[1]}
+behind=${ahead_and_behind[2]}
 
-    (( $ahead )) && gitstatus+=( "%b%f↑${ahead}" )
-    (( $behind )) && gitstatus+=( "%b%f↓-${behind}" )
+(( $ahead )) && gitstatus+=( "%b%f↑${ahead}" )
+(( $behind )) && gitstatus+=( "%b%f↓-${behind}" )
 
-    hook_com[branch]+=${(j:/:)gitstatus}
+hook_com[branch]+=${(j:/:)gitstatus}
 }
 
 # Show commit hash in 'detached head' instead of a random branch name
@@ -130,24 +130,24 @@ fi
 # NB: single quotes are required for VCS info variable to work
 
 if [ "`id -u`" -eq 0 ]; then
-  export PS1='%{[36;1m%}%D{%H:%M} %{[34m%}%n%{[33m%}@%{[37m%}%m %{[32m%}%~%{[33m%}%#%{[0m%} ${vcs_info_msg_0_}'
+    export PS1='%{[36;1m%}%D{%H:%M} %{[34m%}%n%{[33m%}@%{[37m%}%m %{[32m%}%~%{[33m%}%#%{[0m%} ${vcs_info_msg_0_}'
 else
-  export PS1='%{[36;1m%}%D{%H:%M} %{[31m%}%n%{[33m%}@%{[37m%}%m %{[32m%}%~%{[33m%}%#%{[0m%} ${vcs_info_msg_0_}'
+    export PS1='%{[36;1m%}%D{%H:%M} %{[31m%}%n%{[33m%}@%{[37m%}%m %{[32m%}%~%{[33m%}%#%{[0m%} ${vcs_info_msg_0_}'
 fi
 
 
 # use ls colors with dircolors
 if [ -x /usr/bin/dircolors ]
 then
-  if [ -r ~/.dir_colors ]
-  then
-    eval "`dircolors -b ~/.dir_colors`"
-  elif [ -r /etc/dir_colors ]
-  then
-    eval "`dircolors -b /etc/dir_colors`"
-  else
-    eval "`dircolors -b`"
-  fi
+    if [ -r ~/.dir_colors ]
+    then
+        eval "`dircolors -b ~/.dir_colors`"
+    elif [ -r /etc/dir_colors ]
+    then
+        eval "`dircolors -b /etc/dir_colors`"
+    else
+        eval "`dircolors -b`"
+    fi
 fi
 
 
