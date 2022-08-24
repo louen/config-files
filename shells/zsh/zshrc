@@ -87,7 +87,7 @@ zstyle ':vcs_info:git*+set-message:*' hooks git-untracked git-st git-detached-he
 function +vi-git-untracked(){
     if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]] && \
         git status --porcelain | grep -q '^?? ' 2> /dev/null ; then
-        hook_com[staged]+='T'
+        hook_com[staged]+='…'
     fi
 }
 # Add +x /-x when local branch is ahead / behid remote branch
@@ -105,10 +105,10 @@ function +vi-git-st() {
     ahead=${ahead_and_behind[1]}
     behind=${ahead_and_behind[2]}
 
-    (( $ahead )) && gitstatus+=( " +${ahead}" )
-    (( $behind )) && gitstatus+=( " -${behind}" )
+    (( $ahead )) && gitstatus+=( "%b%f↑${ahead}" )
+    (( $behind )) && gitstatus+=( "%b%f↓-${behind}" )
 
-    hook_com[staged]+=${(j:/:)gitstatus}
+    hook_com[branch]+=${(j:/:)gitstatus}
 }
 
 # Show commit hash in 'detached head' instead of a random branch name
