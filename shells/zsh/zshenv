@@ -7,7 +7,18 @@
 # Default environnement variables.
 
 # Path configuration. Does NOT includes the current dir.
-export PATH="/usr/local/bin:/usr/local/sbin:/bin:/usr/bin:/usr/sbin:/usr/bin/X11:/usr/X11R6/bin:/usr/games:/sbin:$HOME/bin"
+export DEFAULT_PATH="/usr/local/bin:/usr/local/sbin:/bin:/usr/bin:/usr/sbin:/usr/bin/X11:/usr/X11R6/bin:/usr/games:/sbin:$HOME/bin"
+
+# By default, we do not inherit the PATH from the parent process and start a new shell with a clean PATH
+# However, when running processes out of a conda environment, we need the shell to inherit PATH
+
+if [[ -z "${CONDA_DEFAULT_ENV}" ]]; then
+    export PATH=$DEFAULT_PATH
+else
+    export PATH="$PATH;$DEFAULT_PATH"
+fi
+
+
 
 # Vim is our default text editor
 export VISUAL=vim
