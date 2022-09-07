@@ -31,9 +31,10 @@ brew install --cask htop
 brew install --cask rectangle
 brew install thefuck
 
-echo "Installing text editors : vscode / macvim"
+echo "Installing text editors : vscode / macvim / meld"
 brew install --cask visual-studio-code
 brew install --cask macvim
+brew install --cask meld
 
 echo "Installing fonts : Fira code"
 brew tap homebrew/cask-fonts
@@ -61,7 +62,7 @@ defaults write -g NSDocumentSaveNewDocumentsToCloud -bool false
 defaults write -g NSNavPanelExpandedStateForSaveMode -bool true
 defaults write -g NSNavPanelExpandedStateForSaveMode2 -bool true
 
-## Finder 
+## Finder
 # Always open everything in Finder's list view.
 defaults write com.apple.Finder FXPreferredViewStyle Nlsv
 
@@ -124,7 +125,7 @@ cat > ~/Library/KeyBindings/DefaultKeyBinding.dict <<EOM
 EOM
 
 ## Dock settings
-# No bouncing 
+# No bouncing
 defaults write com.apple.dock no-bouncing -bool TRUE
 # No genie effect
 defaults write com.apple.dock mineffect -string scale
