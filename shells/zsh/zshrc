@@ -136,6 +136,18 @@ else
 fi
 
 
+# Do our own conda env display with blackjack and hookers
+precmd_conda_info() {
+    if [[ -n $CONDA_PREFIX ]];then
+        CONDA_ENV="($(basename $CONDA_PREFIX))"
+    else
+        CONDA_ENV=""
+    fi
+}
+
+precmd_functions+=( precmd_conda_info )
+export RPROMPT='%B%F{180}$CONDA_ENV%f%b'
+
 # use ls colors with dircolors
 if [ -x /usr/bin/dircolors ]
 then
