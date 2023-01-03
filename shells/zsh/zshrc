@@ -83,12 +83,18 @@ zstyle ':vcs_info:git:*' actionformats '[%F{magenta}%B%b%%b%f|%B%F{cyan}%a%f%%b%
 zstyle ':vcs_info:git*+set-message:*' hooks git-untracked git-st git-detached-head
 
 
-# Show marker if there are untracked files in repository
+# Show marker if there are untracked files in repository or stashed files
 function +vi-git-untracked(){
-if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]] && \
-    git status --porcelain | grep -q '^?? ' 2> /dev/null ; then
-    hook_com[staged]+='…'
-fi
+    local stash
+    if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]] && \
+        git status --porcelain | grep -q '^?? ' 2> /dev/null ; then
+        hook_com[staged]+='…'
+    fi
+    stash=$(git stash list | wc -l)
+    stash=${stash// }
+    if [[ ${stash} > 0 ]]; then
+        hook_com[staged]+="%F{yellow}✎${stash}%f"
+    fi
 }
 # Add +x /-x when local branch is ahead / behind remote branch
 function +vi-git-st() {
@@ -120,6 +126,7 @@ if [[ -z "$(git symbolic-ref -q HEAD)" ]]; then
     hook_com[branch]=":$(git rev-parse --short HEAD)"
 fi
 }
+
 
 # Configure the main prompt
 
