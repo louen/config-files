@@ -2,113 +2,105 @@
 %                          LaTeX report template                              %
 %              © 2010 Valentin Roussellet (louen_AD_palouf.org)               %
 %    Distributed under the terms of WTFPL v2, see http://sam.zoy.org/wtfpl    %
+%                 Version 2 for modern LaTeX, 13 of May 2023                  %
+%                       Compile with XeLaTeX or LuaLaTeX                      %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\documentclass[a4paper]{report}
+\documentclass[a4paper, 10pt]{report}
 
-% Notes : this template includes all the packages I used to produce reports 
-% papers etc. Not all of them are useful, so uncomment the ones you don't need
-
-% Usual layout in English / French documents :
-%
-%       English                 French
-%                               remerciements
-%                               table des abréviations
-%                               sommaire (short ToC)
-%                               = corps du document =
-%                               bibliographie
-%                               annexes
-%                               glossaire
-%                               table des matieres
-%                               tables des figures, listings, etc.
-%                               index
 % ============================== PREAMBLE =====================================
-% Encoding --------------------------------------------------------------------
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
+% Language---------------------------------------------------------------------
+\usepackage[english]{babel}
 
-% Uncomment this if you are typing in french
-%\usepackage[french]{babel}
-
-% Margins redefinition ---------------------------------------------------------
+% Margins----------------------------------------------------------------------
 \usepackage{geometry}
-\geometry{hmargin=2.5cm, vmargin=2.2cm }
+\geometry{hmargin=4.0cm, vmargin=2.0cm }
 
-% Custom colors -----------------
-\definecolor{codebg}{rgb}{0.95,0.95,0.95}       % light grey for code background
-\definecolor{codecomment}{rgb}{0,0.5,0}         % comments in green
-\definecolor{codestring}{rgb}{0.5,0,0}          % strings in red
-
-% Useful packages  -------------------------------------------------------------
-\usepackage{graphicx}                           % including images
-\usepackage{url}                                % proper typesetting of URLs
+% Useful packages--------------------------------------------------------------
+\usepackage{graphicx}                           % including  images
 \usepackage{xcolor}                             % color texts
+\usepackage{subcaption}                         % caption subfigures
 \usepackage[tight]{shorttoc}                    % for a short summary
-\usepackage{listings}                           % for source code inclusion
+\usepackage[colorlinks=true,
+            linkcolor=blue,
+            citecolor=blue,
+            urlcolor=blue,
+            bookmarksopen=false]{hyperref}      % pdf links in the document
+%\usepackage{listings}                          % for source code inclusion
 
-% for links in the document
-\usepackage[colorlinks=true, linkcolor=blue, citecolor=blue]{hyperref} 
+%\usepackage{fontspec}
 
-% Glossary ------------------------
-\usepackage[style=list,number=none,toc=true]{glossary}
-\makeglossary
-
-% Mathematical symbols and shortcuts -------------------------------------------
+% Mathematical symbols---------------------------------------------------------
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
-\usepackage{asmthm}
-\usepackage{mathrsfs}
+\usepackage{amsfonts}               % math fonts (mathbb, mathcal, etc.)
+\usepackage{mathrsfs}               % support for both mathsrc and mathcal
+\usepackage{amsthm}                 % theorem environment
+\usepackage{mathtools}              % shortintertext
 
-\newtheorem{lemma}{Lemma}
-\newtheorem{property}{Property}
+\usepackage{unicode-math} % Must be loaded after ams packages
+
+\usepackage[backend=biber,      % use biber as our bib tool
+            style=alphabetic,   % similar to alpha with short keys [XYX+12]
+            maxcitenames=2,     % Cite at most two authors before "et al."
+            maxbibnames=99,     % Full names in bibliography
+            refsection=section, % only show the bibliography of the section
+            doi=false, isbn=false, % do not show DOI or ISBN
+            natbib=true]{biblatex} % Let us have citet and citep from natbib
+\renewcommand\mkbibnamefamily[1]{\textsc{#1}} % Use small caps for names
+\AtBeginBibliography{\small} % Smaller text for bibliography
+
+% \addbibresource{xxx.bib}
+
+\usepackage{lscape}
+\usepackage{csquotes}
+\usepackage{cleveref}
+\usepackage{textcomp}
+\usepackage{gensymb}
 
 
-% Listings setup -----------------
-\lstset{language=C,                             % programming language
-morekeywords={},                                % additionnal keywords
-basicstyle=\small\ttfamily,                     % style of the code
-keywordstyle=\color{blue}\bfseries,             % style of the keywords
-stringstyle=\color{codestring},                 % style of the strings
-commentstyle=\color{codecomment},               % style of the comments
-showspaces=false,                               % do not underline spaces in code
-showstringspaces=false,                         % do not underline spaces in strings
-showtabs=false,                                 % do not underline tabs
-numbers = left,                                 % where are the line-numbers
-numberstyle=\footnotesize,                      % style of the line-numbers
-backgroundcolor=\color{codebg},                 % background-color
-stepnumber=1,                                   % the step between two line-numbers.
-extendedchars=true,                             % allows extended characters
-columns=flexible,                               % sets the columns to non-fixed width
-tabsize=2,                                      % sets the tabulation width
-frame=trBL,                                     % adds a frame around the code with double line on the bottom
-frameround=tttt,                                % rounds the frame
-breaklines=true,                                % line breaks automatically
-breakautoindent=true,                           % keep indentation level withh line breaks
-captionpos=b,                                   % the caption is at the bottom
-}
+% Typesetting ----------
+
+\allowdisplaybreaks                 % allow equations page break
+\linespread{1.0}                    % Line spacing
+
+% Main font is Tex Gyre Pagella / Fira Sans / Fira Code
+\defaultfontfeatures{Scale=MatchLowercase}
+\setmainfont[Ligatures=TeX]{Tex Gyre Pagella}
+\setsansfont[Ligatures = TeX,
+             FontFace = {sb}{n}{Fira Sans SemiBold},
+             FontFace = {sb}{i}{Fira Sans SemiBold Italic}
+]{Fira Sans}
+\setmonofont[FakeStretch=0.9]{Fira Code}
+
+% Select math fonts to match
+\setmathfont[Ligatures=TeX]{TeX Gyre Pagella Math}
+
+% Enable semi-bold
+\DeclareOldFontCommand{\sbseries}{\fontseries{sb}\selectfont}{\mathbf}
+\DeclareTextFontCommand{\textsb}{\sbseries}
+
+% Use XITS maths for different mathcal and mathscr symbols
+\setmathfont[range={\mathcal,\mathbfcal},StylisticSet=1]{XITS Math}
+\setmathfont[range=\mathscr]{XITS Math}
+
+
+\numberwithin{equation}{section} % number equations per section
+
+% Math and other comnmands
+\input{commands}
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs - comment this line for an assignment with lots of text
 
 % ============================== FRONT MATTER =================================
 
-\title{}
-\author{}
-\date{}
+\title{Report title}
+\author{Valentin \textsc{Roussellet} \\
+ACME Corp.}
+\date{\today}
 
-% ============================= END OF PREAMBLE ===============================
 \begin{document}
-
-\maketitle              % Page 1 : title page 
-\newpage                % Page break
-\tableofcontents        % Page 2 : table of contents
-\clearpage              % Page break
-\phantomsection
-
-% Introduction outside standard section numerotation
-\setcounter{section}{0}
-\addcontentsline{toc}{section}{Introduction}
-\section*{Introduction}
-
-% TEXT 
-
-\appendix
-\printglossary
+\maketitle
+If your margins are too small, write
+\[ a^n + b^n = c^n \]
 \end{document}

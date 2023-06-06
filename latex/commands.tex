@@ -1,0 +1,63 @@
+% Mathematical Notations and useful command in latex
+
+% Geometry and algebra
+
+% Point: bold lower case letter
+\newcommand{\pt}[1]{\boldsymbol{\mathbf{#1}}}
+
+% Common shorthand for vertices
+\newcommand{\vi}{\pt{v}_i}
+\newcommand{\vj}{\pt{v}_j}
+
+% Vector : bold lower case letter with arrow
+\renewcommand{\vec}[1]{\protect\overrightarrow{\boldsymbol{\mathbf{#1}}}}
+
+% Norm of a vector using single vertical bars
+\newcommand{\norm}[1]{\left\lVert #1 \right\rVert}
+
+% Matrix : bold capital letter
+\newcommand{\mat}[1]{\boldsymbol{\mathbf{#1}}}
+
+% Inverse, transpose and inverse transpose
+\newcommand{\invmat}[1]{\boldsymbol{\mathbf{#1}}^{-1}}
+\newcommand{\tmat}[1]{\boldsymbol{\mathbf{#1}}^{\mathrm{T}}}
+\newcommand{\tinvmat}[1]{\boldsymbol{\mathbf{#1}}^{\mathrm{-T}}}
+
+% Operators 
+\DeclareMathOperator{\supp}{supp} % Support of a function
+\DeclareMathOperator{\diag}{diag} % Diagonal matrix
+\DeclareMathOperator{\proj}{proj} % Projection
+
+
+% Optimization
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\newcommand{\subjectto}{\mathrm{s.t.\;}}
+
+\DeclareMathOperator*{\relu}{ReLU}
+
+% Differential operator : straight d (useful for integrals)
+\newcommand{\dd}{\mathrm{d}}
+
+% Jacobian (matrix J with index)
+\newcommand{\Jac}[1]{\mat{J}_{#1}}
+
+% Probablilty theory
+
+% Expectation
+\newcommand{\E}{\mathbb{E}}
+
+% Variance
+\newcommand{\V}{\mathbb{V}}
+
+% Kulback-Leiter distance
+\newcommand{\KLD}[2]{\mathrm{KL}\left[ #1 \Big|\Big| #2 \right]}
+
+% Other latex shortcuts
+
+% Possessive citation (e.g. "In Einstein's [Ein05] work")
+\newcommand{\citepos}[1]{\citeauthor{#1}'s \cite{#1}}
+
+% Subfigure reference
+\newcommand{\subfigref}[1]{(Figure~(\subref{#1}))}
+
