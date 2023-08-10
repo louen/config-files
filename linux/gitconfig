@@ -1,23 +1,44 @@
+# User identity
+#
 [user]
     email = [snip]
     name = Valentin Roussellet
+
+# Diff tool
+#
 [diff]
-    tool = meld
+    tool = vscode
 
 [difftool]
     prompt = false
 
+[difftool "bc"]
+    trustExitCode = true
+
+[difftool "vscode"]
+    cmd = code --wait --diff $LOCAL $REMOTE
+
+# Merge tool
+#
 [merge]
-    tool = meld
+    tool = vscode
     conflictstyle = diff3
 
 [mergetool]
     prompt = false
     keepBackup = false
 
+[mergetool "bc"]
+    trustExitCode = true
+
+[mergetool "vscode"]
+    cmd = code --wait --merge $REMOTE $LOCAL $BASE $MERGED
+
 [credential]
     helper = cache --timeout=86400
 
+# Aliases and shortcuts
+#
 [alias]
     st = status
     stat = status
@@ -31,11 +52,13 @@
     weekly = "!me=$(git config --get user.email); git log --author=$me --since=\"8 days ago\" --oneline"
 
 [push]
-    default = simple
+    default = simple # push only the current branch if upstream has the same name
+
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+
 [init]
 	defaultBranch = main
