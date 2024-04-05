@@ -22,7 +22,6 @@
 #
 [merge]
     tool = vscode
-    conflictstyle = diff3
 
 [mergetool]
     prompt = false
@@ -50,6 +49,7 @@
     d = diff
     dt = difftool
     weekly = "!me=$(git config --get user.email); git log --author=$me --since=\"8 days ago\" --oneline"
+    deadbranches = "!git fetch -p; git branch -vv | grep \": gone]\" | grep -v  \"\\*\" | awk  '{print $1}'"
 
 [push]
     default = simple # push only the current branch if upstream has the same name
