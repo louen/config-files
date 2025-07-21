@@ -4,6 +4,10 @@
 # http://formation-debian.via.ecp.fr/
 # modified by louen -- louen at palouf.org
 
+# Use this in combination with `zprof` at the bottom
+# to profile zsh initialization
+# zmodload zsh/zprof
+
 ############################
 # 1. Key configurations    #
 ############################
@@ -291,8 +295,15 @@ zstyle ':completion:*' use-compctl false
 
 fpath+=(~/.zsh)
 
-autoload -U compinit
-compinit
+# Load compinit
+autoload -Uz compinit
+
+# Recompute the completion database once per day
+if [ "$(date +'%j')" != "$(stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)" ]; then
+    compinit
+else
+    compinit -C
+fi
 
 
 ###############
@@ -314,3 +325,6 @@ fi
 if [ -f ~/.zshrc.local ]; then
     . ~/.zshrc.local
 fi
+
+# Uncomment to trofile zsh loading time
+# zprof
