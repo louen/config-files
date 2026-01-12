@@ -116,6 +116,14 @@ alias g="git"
 alias v="vim"
 alias gv="gvim"
 
+if [ "$os" = "MAC" ]; then # On Linux we use apt to upgrade
+    rmdd() {
+        DD="${HOME}/Library/Developer/Xcode/DerivedData"
+        ls -d ${DD}/$1*/ 2>/dev/null || { echo "No match"; return 1; }
+        read -q "?Delete these? (y/n) " && rm -rf -- "${DD}/"${1}*
+    }
+fi
+
 # Add an "alert command" to wake you up after running a long command
 # Example usage: sleep 100; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|    tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'

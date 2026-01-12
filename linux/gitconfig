@@ -55,10 +55,10 @@
     default = simple # push only the current branch if upstream has the same name
 
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
 
 [init]
-	defaultBranch = main
+    defaultBranch = main
