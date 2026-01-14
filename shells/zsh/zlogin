@@ -5,16 +5,11 @@
 
 
 # Commands auto-executed when opening a console
+# Only run for interactive shells
+if [[ -o interactive ]]; then
+    uname -a
+    uptime
+    # Enables messages
+    mesg y
+fi
 
-# Dsplays system info
-# figlet -f slant `hostname`
-uname -a
-uptime
-# Enables messages
-
-mesg y
-
-# Enables 'setum' when using a real console
-#case "`tty`" in /dev/tty[1-6]*)
-#    setleds +num
-#esac
