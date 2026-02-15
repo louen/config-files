@@ -10,6 +10,8 @@
         "pulseaudio",
         "cpu",
         "temperature",
+        "custom/gpu-load",
+        "custom/gpu-temp",
         "clock#date",
         "clock#tokyo",
         "clock#paris",
@@ -41,11 +43,24 @@
     },
 
     "cpu": {
-        "format": "CPU {load}"
+        "format": "CPU {usage}%",
+        "tooltip": false
     },
 
     "temperature": {
-        "format": "CPU {temperatureC}\u00b0C"
+        "format": "{temperatureC}\u00b0C"
+    },
+
+    "custom/gpu-load": {
+        "exec": "nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits",
+        "format": "GPU {}%",
+        "interval": 5
+    },
+
+    "custom/gpu-temp": {
+        "exec": "nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader,nounits",
+        "format": "{}\u00b0C",
+        "interval": 5
     },
 
     "clock#date": {

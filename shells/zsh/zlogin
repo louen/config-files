@@ -9,7 +9,5 @@
 if [[ -o interactive ]]; then
     uname -a
     uptime
-    # Enables messages
-    mesg y
 fi
 

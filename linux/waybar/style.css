@@ -38,6 +38,14 @@ window#waybar {
     color: #fabd2f;
 }
 
+#custom-gpu-load {
+    color: #b8bb26;
+}
+
+#custom-gpu-temp {
+    color: #98971a;
+}
+
 #clock.date {
     color: #a9b665;
 }
@@ -65,6 +73,8 @@ window#waybar {
 #pulseaudio,
 #cpu,
 #temperature,
+#custom-gpu-load,
+#custom-gpu-temp,
 #clock {
     padding: 0 8px;
 }
@@ -72,8 +82,8 @@ window#waybar {
 #disk,
 #network,
 #pulseaudio,
-#cpu,
 #temperature,
+#custom-gpu-temp,
 #clock.date {
     border-right: 1px solid #504945;
 }
