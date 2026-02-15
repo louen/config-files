@@ -1,0 +1,75 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 30,
+    "modules-left": ["hyprland/workspaces"],
+    "modules-center": ["hyprland/window"],
+    "modules-right": [
+        "disk",
+        "network",
+        "pulseaudio",
+        "cpu",
+        "temperature",
+        "clock#date",
+        "clock#tokyo",
+        "clock#paris",
+        "clock#newyork",
+        "clock#la"
+    ],
+
+    "hyprland/workspaces": {
+        "format": "{id}"
+    },
+
+    "hyprland/window": {
+        "max-length": 50
+    },
+
+    "disk": {
+        "path": "/",
+        "format": "{free}"
+    },
+
+    "network": {
+        "format-wifi": "W: ({signalStrength}% at {essid}) {ipaddr}",
+        "format-disconnected": "W: down"
+    },
+
+    "pulseaudio": {
+        "format": "Vol {volume}%",
+        "format-muted": "Vol M ({volume}%)"
+    },
+
+    "cpu": {
+        "format": "CPU {load}"
+    },
+
+    "temperature": {
+        "format": "CPU {temperatureC}\u00b0C"
+    },
+
+    "clock#date": {
+        "format": "{:%a %d/%m/%Y}"
+    },
+
+    "clock#tokyo": {
+        "format": "TYO {:%H:%M}",
+        "timezone": "Asia/Tokyo"
+    },
+
+    "clock#paris": {
+        "format": "PAR {:%H:%M}",
+        "timezone": "Europe/Paris"
+    },
+
+    "clock#newyork": {
+        "format": "NYC {:%H:%M}",
+        "timezone": "America/New_York"
+    },
+
+    "clock#la": {
+        "format": "LAX {:%H:%M}",
+        "timezone": "America/Los_Angeles"
+    },
+
+}
