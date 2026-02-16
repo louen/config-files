@@ -97,7 +97,8 @@ if [ "$os" != "MAC" ]; then # On Linux we use apt to upgrade
     alias a2reload="/etc/init.d/apache2 reload"
     alias a2restart="/etc/init.d/apache2 restart"
     alias reboot="systemctl reboot"
-    alias shutdown"systemctl poweroff"
+    alias shutdown="systemctl poweroff"
+    alias dpkg-purge="dpkg -l | grep '^rc' | awk '{print \$2}' | xargs sudo apt purge -y"
 
 else # On macOS we use brew to upgrade
     alias upgrade="brew update && brew upgrade"
