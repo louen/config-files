@@ -28,22 +28,27 @@ window#waybar {
 
 #pulseaudio {
     color: #d3869b;
+    min-width: 70px;
 }
 
 #cpu {
     color: #fe8019;
+    min-width: 70px;
 }
 
 #temperature {
     color: #fabd2f;
+    min-width: 45px;
 }
 
 #custom-gpu-load {
     color: #b8bb26;
+    min-width: 65px;
 }
 
 #custom-gpu-temp {
     color: #98971a;
+    min-width: 45px;
 }
 
 #clock.date {
