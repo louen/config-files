@@ -149,8 +149,8 @@ fi
 
 # Do our own conda env display with blackjack and hookers
 precmd_conda_info() {
-    if [[ -n $CONDA_PREFIX ]];then
-        CONDA_ENV="($(basename $CONDA_PREFIX))"
+    if [[ -n $CONDA_DEFAULT_ENV && $CONDA_DEFAULT_ENV != "base" ]]; then
+        CONDA_ENV="($CONDA_DEFAULT_ENV)"
     else
         CONDA_ENV=""
     fi

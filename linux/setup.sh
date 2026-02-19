@@ -368,6 +368,50 @@ sudo systemctl set-default graphical.target
 ok "greetd enabled, graphical.target set as default"
 
 
+# ─── Conda (Miniforge) ────────────────────────────────────────────────────────
+
+section "Conda (Miniforge)"
+
+CONDA_DIR="$HOME/devel/miniforge3"
+
+if [[ -d "$CONDA_DIR" ]]; then
+    ok "Miniforge already installed at $CONDA_DIR"
+else
+    info "Downloading Miniforge installer..."
+    CONDA_INSTALLER="/tmp/Miniforge3.sh"
+    CONDA_BASE_URL="https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh"
+    wget -q "${CONDA_BASE_URL}"        -O "$CONDA_INSTALLER"
+    wget -q "${CONDA_BASE_URL}.sha256" -O "$CONDA_INSTALLER.sha256"
+
+    info "Verifying SHA256 checksum..."
+    if ! sha256sum -c "$CONDA_INSTALLER.sha256"; then
+        rm "$CONDA_INSTALLER" "$CONDA_INSTALLER.sha256"
+        die "Miniforge checksum verification failed — aborting."
+    fi
+    ok "Checksum verified"
+    rm "$CONDA_INSTALLER.sha256"
+
+    info "Installing Miniforge to $CONDA_DIR..."
+    bash "$CONDA_INSTALLER" -b -p "$CONDA_DIR"
+    rm "$CONDA_INSTALLER"
+    ok "Miniforge installed"
+fi
+
+# Write the conda shell hook to ~/.zshrc.local to keep the repo's zshrc clean.
+touch "$HOME/.zshrc.local"
+if grep -q "$CONDA_DIR" "$HOME/.zshrc.local"; then
+    ok "Conda hook already present in ~/.zshrc.local"
+else
+    info "Adding conda shell hook to ~/.zshrc.local..."
+    "$CONDA_DIR/bin/conda" shell.zsh hook >> "$HOME/.zshrc.local"
+    ok "Conda hook written to ~/.zshrc.local"
+fi
+
+# Disable conda's default prompt modification (we use RPROMPT in zshrc instead)
+"$CONDA_DIR/bin/conda" config --set changeps1 false
+ok "Conda prompt modification disabled"
+
+
 # ─── Wallpaper ────────────────────────────────────────────────────────────────
 
 section "Wallpaper directory"
