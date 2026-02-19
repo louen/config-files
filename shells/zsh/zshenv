@@ -7,7 +7,7 @@
 # Default environnement variables.
 
 # Path configuration. Does NOT includes the current dir.
-export DEFAULT_PATH="/usr/local/bin:/usr/local/sbin:/bin:/usr/bin:/usr/sbin:/usr/bin/X11:/usr/X11R6/bin:/usr/games:/sbin:$HOME/bin"
+export DEFAULT_PATH="/usr/local/bin:/usr/local/sbin:/bin:/usr/bin:/usr/sbin:/sbin:$HOME/bin:$HOME/.local/bin"
 
 # On MacOS, add brew binaries to path
 if [[ -d "/opt/homebrew/" ]]; then
