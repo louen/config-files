@@ -33,15 +33,3 @@ export EDITOR=vim
 # et rwxr-xr-x for directories
 umask 022
 
-# Configure your http or ftp proxies here.
-
-# No password needed
-#export http_proxy="http://proxy.exemple.org:8080"
-#export ftp_proxy="ftp://proxy.exemple.org:8080"
-
-# Password needed
-#export http_proxy="http://login:password@proxy.exemple.org:8080"
-#export ftp_proxy="ftp://login:password@proxy.exemple.org:8080"
-
-# Configure domains for which proxies are ignored
-#export no_proxy="exemple.org"

@@ -81,7 +81,7 @@ alias su="su - "
 
 # Check if the very useful package "thefuck" is installed and configure
 # the alias. see https://github.com/nvbn/thefuck#manual-installation
-if which thefuck > /dev/null; then
+if command -v thefuck > /dev/null; then
 	eval $(thefuck --alias)
 fi
 
@@ -111,8 +111,8 @@ fi
 ################
 
 # Debug and release shortcuts for cmake
-alias cmaked="cmake $1 -DCMAKE_BUILD_TYPE=Debug"
-alias cmaker="cmake $1 -DCMAKE_BUILD_TYPE=Release"
+cmaked() { cmake "$@" -DCMAKE_BUILD_TYPE=Debug; }
+cmaker() { cmake "$@" -DCMAKE_BUILD_TYPE=Release; }
 
 # One letter aliases
 alias g="git"
