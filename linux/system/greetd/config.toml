@@ -8,7 +8,7 @@ vt = 1
 
 # `agreety` is the bundled agetty/login-lookalike. You can replace `/bin/sh`
 # with whatever you want started, such as `sway`.
-command = "tuigreet --cmd hyprland"
+command = "tuigreet --cmd start-hyprland --remember --power-shutdown 'systemctl poweroff' --power-reboot 'systemctl reboot'"
 # if using wlgreet
 #command = "sway --config /etc/greetd/sway-config"
 
