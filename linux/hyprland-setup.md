@@ -18,6 +18,8 @@
 - `greetd` + `tuigreet` — login greeter (user `_greetd` in config)
 - `pamixer` — volume control CLI
 - `imv` — Wayland image viewer
+- `dropboxd` (`~/.local/lib/dropbox/dropboxd`) — Dropbox sync daemon; start manually with `~/.local/lib/dropbox/dropboxd &`, stop with `pkill -f dropboxd`; folder config in `~/.dropbox/info.json`
+- `dropbox` CLI (`~/.local/bin/dropbox`) — Python script that queries `dropboxd` via its socket (`~/.dropbox/command_socket`); used by the waybar module; **do not use a symlink for `~/Dropbox`** — if moving the folder, stop the daemon first, move the files, update `info.json`, then restart
 - `code` — VS Code (from Microsoft repo)
 - `spotify-client` — needed manual .desktop file in `~/.local/share/applications/`
 
@@ -61,7 +63,7 @@ Everything uses **Gruvbox Dark**:
 | XF86Audio keys | Volume up/down/mute via pamixer |
 
 ## Waybar Modules (right side)
-`disk | network | volume | CPU load temp | GPU load temp | date TYO PAR NYC LAX`
+`disk | dropbox | network | volume | CPU load temp | GPU load temp | date TYO PAR NYC LAX`
 - CPU and GPU groups share a label, no separator within group
 - Variable-width modules have `min-width` set in CSS to prevent layout shifting
 - LAX timezone is bold (local timezone)

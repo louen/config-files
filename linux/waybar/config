@@ -6,6 +6,7 @@
     "modules-center": ["hyprland/window"],
     "modules-right": [
         "disk",
+        "custom/dropbox",
         "network",
         "pulseaudio",
         "cpu",
@@ -25,6 +26,13 @@
 
     "hyprland/window": {
         "max-length": 50
+    },
+
+    "custom/dropbox": {
+        "exec": "$HOME/.local/bin/dropbox status 2>/dev/null | head -1",
+        "format": "DBX: {}",
+        "interval": 5,
+        "on-click": "$HOME/.local/bin/dropbox start"
     },
 
     "disk": {

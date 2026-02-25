@@ -412,6 +412,44 @@ fi
 ok "Conda prompt modification disabled"
 
 
+# ─── Dropbox ──────────────────────────────────────────────────────────────────
+
+section "Dropbox"
+
+DROPBOX_DIR="$HOME/.local/lib/dropbox"
+DROPBOX_BIN="$DROPBOX_DIR/dropboxd"
+
+install_dropbox() {
+    info "Downloading Dropbox daemon..."
+    mkdir -p "$DROPBOX_DIR"
+    wget -qO - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf - --strip-components=1 -C "$DROPBOX_DIR"
+    ok "Dropbox installed at $DROPBOX_DIR"
+}
+
+if [[ -x "$DROPBOX_BIN" ]]; then
+    if yes_no "Dropbox already installed. Update it?"; then
+        install_dropbox
+    else
+        ok "Dropbox kept as-is"
+    fi
+else
+    install_dropbox
+fi
+
+# Dropbox CLI — Python wrapper that queries dropboxd status via its socket.
+# Used by the waybar custom/dropbox module.
+DROPBOX_CLI="$HOME/.local/bin/dropbox"
+if [[ -x "$DROPBOX_CLI" ]]; then
+    ok "Dropbox CLI already installed"
+else
+    info "Downloading Dropbox CLI..."
+    mkdir -p "$HOME/.local/bin"
+    curl -fsSL "https://www.dropbox.com/download?dl=packages/dropbox.py" -o "$DROPBOX_CLI"
+    chmod +x "$DROPBOX_CLI"
+    ok "Dropbox CLI installed at $DROPBOX_CLI"
+fi
+
+
 # ─── Wallpaper ────────────────────────────────────────────────────────────────
 
 section "Wallpaper directory"

@@ -18,6 +18,11 @@ window#waybar {
     color: #fbf1c7;
 }
 
+#custom-dropbox {
+    color: #458588;
+    min-width: 120px;
+}
+
 #disk {
     color: #b8bb26;
 }
@@ -73,6 +78,7 @@ window#waybar {
     margin-right: 4px;
 }
 
+#custom-dropbox,
 #disk,
 #network,
 #pulseaudio,
@@ -84,6 +90,7 @@ window#waybar {
     padding: 0 8px;
 }
 
+#custom-dropbox,
 #disk,
 #network,
 #pulseaudio,
